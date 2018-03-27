@@ -1,59 +1,73 @@
 <template lang="html">
-  <div class="homeNoticeArea">
-    <div class="homeNoticeTitle">
-      <div class="titleSub">
-        공지사항
+  <div class="homeNoticeArea lFloat">
+    <div class="homeNoticeTitle fullBox outterBorder roundBorder">
+      <div class="innerBorder roundBorder title">
+        ㆎ공지사항
+        <!-- <span class="rFloat homeNoticeExtend"><router-link to="/notice">more</router-link></span> -->
       </div>
     </div>
-    <div class="homeNoticeList">
-      <div class="listSub">
-        공지
+    <div class="homeNoticeList fullBox outterBorder roundBorder">
+      <div class="listSub innerBorder">
+        <ul>
+          <li class="notice"v-for="notice in noticeList">
+            <router-link :to="'/notice/'+notice.id">
+              {{ notice.title }}
+            </router-link>
+            <span class="rFloat homeNoticeTime">{{ notice.time }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
+  data() {
+    return {
+      noticeList: []
+    }
+  },
+  mounted() {
+    let self = this
+    this.$http.get("/homenotice").then((result) => {
+      self.noticeList = result.data
+    }).catch((error) => console.log(error))
+  }
 }
 </script>
 
-<style lang="css">
+<style scoped>
   .homeNoticeArea {
     width: 46.5625%;
     z-index: 1;
-    float: left;
-    padding-left: 0.4rem;
+    padding-left: 0.4em;
   }
   .homeNoticeTitle {
-    width: 100%;
-    border: 1px solid #418cf2;
-    border-radius: 10px;
-    margin-bottom: 0.3125rem;
-    background-color: #58a9f7;
-    color: white;
+    margin-bottom: 0.3125em;
   }
   .homeNoticeList {
-    width: 100%;
-    border: 1px solid #418cf2;
-    border-radius: 10px;
-  }
-  .titleSub {
-    border: 1px solid #7fbbf8;
-    border-radius: 10px;
-    padding-top: 0.28125rem;
-    padding-bottom: 0.28125rem;
-    padding-left: 0.4375rem;
-    padding-right: 0.4375rem;
-    letter-spacing: 2px;
+    font-size: 14px
   }
   .listSub {
-    padding-top: 0.5625rem;
-    padding-bottom: 0.5625rem;
-    padding-left: 0.375rem;
-    padding-right: 0.365rem;
-    border: 1px solid #7fbbf8;
+    padding-top: 0.5625em;
+    padding-bottom: 0.5625em;
+    padding-left: 0.375em;
+    padding-right: 0.365em;
     border-radius: 8.5px;
-    height: 17.55rem;
+    height: 17.55em;
+  }
+  .notice {
+    padding: 0.1em
+  }
+  .homeNoticeExtend {
+    line-height: 1.4em;
+    padding-right: 0.5em;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .homeNoticeTime {
+    font-size: 80%;
   }
 </style>

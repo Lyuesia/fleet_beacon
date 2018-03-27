@@ -7,6 +7,20 @@
   <body>
     <div class="main"></div>
 
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD_LwhJo7Azwd2Ysi7ljif4Rq4crGRk5To",
+        authDomain: "fleet-beacon.firebaseapp.com",
+        databaseURL: "https://fleet-beacon.firebaseio.com",
+        projectId: "fleet-beacon",
+        storageBucket: "fleet-beacon.appspot.com",
+        messagingSenderId: "956972768354"
+      };
+      firebase.initializeApp(config);
+      var db = firebaseApp.database()
+    </script>
     <script src="./dist/build.js"></script>
   </body>
 </html>

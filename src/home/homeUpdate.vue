@@ -1,58 +1,66 @@
 <template lang="html">
-  <div class="homeUpdateArea">
-    <div class="homeUpdateTitle">
-      <div class="titleSub">
-        업데이트 내역
+  <div class="homeUpdateArea rFloat">
+    <div class="homeUpdateTitle fullBox outterBorder roundBorder">
+      <div class="innerBorder roundBorder title">
+        ㆎ업데이트 내역
       </div>
     </div>
-    <div class="homeUpdateList">
-      <div class="listSub">
-        2.14 업데이트 내역
+    <div class="homeUpdateList fullBox outterBorder roundBorder">
+      <div class="listSub innerBorder">
+        <ul>
+          <li class="update"v-for="update in updateList">
+            <router-link :to="'/update/'+update.id">
+              {{ update.title }}
+            </router-link>
+            <span class="rFloat homeUpdateTime">{{ update.time }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
+  data() {
+    return {
+      updateList: []
+    }
+  },
+  mounted() {
+    let self = this
+    this.$http.get("/homeupdate").then((result) => {
+      self.updateList = result.data
+    }).catch((error) => console.log(error))
+  }
 }
 </script>
 
-<style lang="css">
+<style scoped>
   .homeUpdateArea {
     width: 46.5625%;
     z-index: 1;
-    float: right;
-    padding-right: 0.4rem;
+    padding-right: 0.4em;
   }
   .homeUpdateTitle {
-    width: 100%;
-    border: 1px solid #418cf2;
-    border-radius: 10px;
-    margin-bottom: 0.3125rem;
-    background-color: #58a9f7;
-    color: white;
+    margin-bottom: 0.3125em;
   }
   .homeUpdateList {
-    width: 100%;
-    border: 1px solid #418cf2;
-    border-radius: 10px;
-  }
-  .titleSub {
-    border: 1px solid #7fbbf8;
-    border-radius: 10px;
-    padding-top: 0.28125rem;
-    padding-bottom: 0.28125rem;
-    padding-left: 0.4375rem;
-    padding-right: 0.4375rem;
+    font-size: 14px
   }
   .listSub {
-    padding-top: 0.5625rem;
-    padding-bottom: 0.5625rem;
-    padding-left: 0.375rem;
-    padding-right: 0.365rem;
-    border: 1px solid #7fbbf8;
+    padding-top: 0.5625em;
+    padding-bottom: 0.5625em;
+    padding-left: 0.375em;
+    padding-right: 0.365em;
     border-radius: 8.5px;
-    height: 17.55rem;
+    height: 17.55em;
+  }
+  .update {
+    padding: 0.1em
+  }
+  .homeUpdateTime {
+    font-size: 80%;
   }
 </style>

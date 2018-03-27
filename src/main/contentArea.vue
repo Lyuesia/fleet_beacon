@@ -11,17 +11,17 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style>
   .contentArea {
     position: absolute;
     background-color: #e7f6ff;
-    width: 60rem;
-    min-height:50rem;
+    width: 60em;
+    min-height: 50em;
     z-index: 0;
   }
   .articleArea {
-    padding-top: 2.0625rem;
-    padding-left: 2.375rem;
-    padding-right: 2.375rem;
+    padding-top: 2.0625em;
+    padding-left: 2.375em;
+    padding-right: 2.375em;
   }
 </style>

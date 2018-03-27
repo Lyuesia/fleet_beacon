@@ -1,7 +1,10 @@
 import Vue from "vue"
 import Router from "vue-router"
 import homeContent from "../home/homeContent.vue"
-// import charDB from "../charDB.vue"
+import charactersRoutes from "./charactersRoutes.js"
+import noticesRoutes from "./noticesRoutes.js"
+import tipsRoutes from "./tipsRoutes.js"
+import updateRoutes from "./updateRoutes.js"
 
 Vue.use(Router)
 
@@ -11,9 +14,9 @@ export default new Router({
       path: "/",
       component: homeContent
     },
-    // {
-    //   path: "/charDB",
-    //   component: charDB
-    // }
+    ...noticesRoutes,
+    ...tipsRoutes,
+    ...charactersRoutes,
+    ...updateRoutes
   ]
 })
