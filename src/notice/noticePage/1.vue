@@ -51,6 +51,7 @@ export default {
   }
   .noticeContentBox {
     background-color: white;
+    margin-bottom: 7em;
   }
   .noticeContentTitle {
     width: 96.8%;
