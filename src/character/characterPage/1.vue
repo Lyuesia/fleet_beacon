@@ -65,6 +65,26 @@
         </table>
       </div>
     </div>
+    <div class="availabilityBox">
+      <table class="fullBox">
+        <colgroup>
+          <col width="10%">
+          <col width="10%">
+          <col width="10%">
+          <col width="10%">
+          <col width="10%">
+          <col width="15%">
+          <col width="15%">
+          <col width="20%">
+        </colgroup>
+        <tr>
+          <th class="charStatHead" colspan="8">획득경로</th>
+        </tr>
+        <tr>
+          <th class="charStatHead">한정</th><td>{{ charData.limited }}</td><th class="charStatHead">드랍</th><td>{{ charData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ charData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ charData.etcavailability }}</td>
+        </tr>
+      </table>
+    </div>
     <div class="skillBox">
       <table class="fullBox">
         <colgroup>
@@ -186,6 +206,26 @@
           </table>
         </div>
       </div>
+      <div class="availabilityBox">
+        <table class="fullBox">
+          <colgroup>
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="15%">
+            <col width="15%">
+            <col width="20%">
+          </colgroup>
+          <tr>
+            <th class="charStatHead" colspan="8">획득경로</th>
+          </tr>
+          <tr>
+            <th class="charStatHead">한정</th><td>{{ remodelCharData.limited }}</td><th class="charStatHead">드랍</th><td>{{ remodelCharData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ remodelCharData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ remodelCharData.etcavailability }}</td>
+          </tr>
+        </table>
+      </div>
       <div class="skillBox">
         <table class="fullBox">
           <colgroup>
@@ -273,10 +313,34 @@ export default {
               id: self.remodelId
             }). then(function (response) {
               self.remodelCharData = response.data[0]
+              if (self.remodelCharData.limited == 0) {
+                self.remodelCharData.limited = "X"
+              }
+              else {
+                self.remodelCharData.limited = "O"
+              }
+              if (self.remodelCharData.dropavailability == 0) {
+                self.remodelCharData.dropavailability = "X"
+              }
+              else {
+                self.remodelCharData.dropavailability = "O"
+              }
             })
           }
           if (self.charData.time === null) {
             self.charData.time = "건조불가"
+          }
+          if (self.charData.limited == 0) {
+            self.charData.limited = "X"
+          }
+          else {
+            self.charData.limited = "O"
+          }
+          if (self.charData.dropavailability == 0) {
+            self.charData.dropavailability = "X"
+          }
+          else {
+            self.charData.dropavailability = "O"
           }
         }).catch((error) => console.log(error))
   }
@@ -320,9 +384,15 @@ export default {
   .charTableBox {
     margin-bottom: 2em;
   }
+  .availabilityBox {
+    margin-bottom: 2em;
+  }
   .skillBox {
     font-size: 14px;
     margin-bottom: 2em;
+  }
+  .skillBox>table>tr>td {
+    font-size: 80%
   }
   .skillTable {
     text-align: center;

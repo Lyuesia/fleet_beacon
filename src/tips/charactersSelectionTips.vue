@@ -57,14 +57,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -86,14 +86,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -115,14 +115,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -144,14 +144,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -173,14 +173,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -202,14 +202,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
@@ -231,14 +231,14 @@
             <col width="14%">
           </colgroup>
           <tr>
-            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/character/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
+            <td colspan="2" rowspan="2" class="icon"><router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link></td>
             <th>나라</th><td>{{ character.country }}</td><th>함종</th><td>{{ character.type }}</td><th>레어도</th><td>{{ character.rarity }}</td>
           </tr>
           <tr>
             <td colspan="6" rowspan="2" v-html="character.recommendtext"></td>
           </tr>
           <tr>
-            <td colspan="2" class="name"><router-link :to="'/character/'+character.id">{{ character.koreanname }}</router-link></td>
+            <td colspan="2" class="name"><router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link></td>
           </tr>
         </table>
       </div>
