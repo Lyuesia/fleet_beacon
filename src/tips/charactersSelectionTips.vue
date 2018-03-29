@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="fullBox wikiSubContentArea charRecommendSubContentArea" v-if="showDropDown1">
-        <p class="intro">이 페이지에 추천된 함선은 최대한 성능에 이견이 없어 성능충이라면 누구나 하나는 키울법한 함선을 모은 것 입니다.</p><p>이곳에 추천된 함선 외에도 위치타, 듀크 오브 요크 등 매우 쓸만한 함선들이 있으니 여기 없는 함선이라고 무작정 거르지 마시고 커뮤니티에 한번쯤 물어보는것을 권합니다.</p><p>또한 특정한 상황(연습전, 절약런 등)에서는 사기급 능력을 지녔지만 일반해역에서는 쓸 수 없는 특수함들도 추천되어있으니 채용전에 설명을 읽어주시길 바랍니다.</p>
+        <p class="intro">이 페이지에 추천된 함선은 최대한 성능에 이견이 없어 성능충이라면 누구나 하나는 키울법한 함선을 모은 것 입니다.</p><p class="intro">이곳에 추천된 함선 외에도 위치타, 듀크 오브 요크 등 매우 쓸만한 함선들이 있으니 여기 없는 함선이라고 무작정 거르지 마시고 커뮤니티에 한번쯤 물어보는것을 권합니다.</p><p class="intro">또한 특정한 상황(연습전, 절약런 등)에서는 사기급 능력을 지녔지만 일반해역에서는 쓸 수 없는 특수함들도 추천되어있으니 채용전에 설명을 읽어주시길 바랍니다.</p>
       </div>
       <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown2=!showDropDown2">
         <div class="innerBorder roundBorder title" id="charRecommend2">

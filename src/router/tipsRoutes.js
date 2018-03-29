@@ -1,5 +1,6 @@
 import charactersSelectionTips from "../tips/charactersSelectionTips.vue"
 import equipSelectionTips from "../tips/equipSelectionTips.vue"
+import characterBuildSimulator from "../tips/characterBuildSimulator.vue"
 
 export default [
     {
@@ -9,5 +10,9 @@ export default [
     {
       path: "/equipSelectionTips",
       component: equipSelectionTips
+    },
+    {
+      path: "/characterBuildSimulator",
+      component: characterBuildSimulator
     }
   ]

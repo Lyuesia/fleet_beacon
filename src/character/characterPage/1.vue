@@ -368,7 +368,7 @@ export default {
     height: 29.16em;
     margin-bottom: 2em;
     text-align: center;
-    vertical-align: center;
+    vertical-align: middle;
   }
   .charStatBox {
     margin-top: 2em;

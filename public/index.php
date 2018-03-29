@@ -12,7 +12,7 @@
     </script>
     <link rel="icon" type="image/png" href="http://ec2-13-125-244-160.ap-northeast-2.compute.amazonaws.com/image/favicon.png" />
     <meta charset="utf-8">
-    <title>fleet_beacon</title>
+    <title>함대신호소</title>
   </head>
   <body>
     <div class="main"></div>

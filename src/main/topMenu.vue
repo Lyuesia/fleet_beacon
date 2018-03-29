@@ -44,6 +44,7 @@
       <div class="dropdown-menu" v-if="topMenu6">
         <router-link class="sub-menu" to="/charactersSelectionTips">함선 추천</router-link>
         <!-- <router-link class="sub-menu" to="/equipSelectionTips">장비 추천</router-link> -->
+        <router-link class="sub-menu" to="/characterBuildSimulator">건조 시뮬레이터</router-link>
       </div>
     </div>
   </div>
