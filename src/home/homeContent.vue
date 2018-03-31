@@ -10,8 +10,8 @@ import homeNotice from "./homeNotice.vue"
 import homeUpdate from "./homeUpdate.vue"
 export default {
   components: {
-    homeNotice: homeNotice,
-    homeUpdate: homeUpdate
+    homeNotice,
+    homeUpdate,
   }
 }
 </script>

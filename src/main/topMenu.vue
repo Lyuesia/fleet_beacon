@@ -26,6 +26,7 @@
       <div class="dropdown-menu" v-if="topMenu4">
         <router-link to="/charDB">캐릭터 DB</router-link>
         <router-link to="/characterbuildlist">건조시간표</router-link>
+        <router-link to="/characterDropSpots">해역별 함선드랍</router-link>
         <!-- <a class="sub-menu" href="#">캐릭터 개조 정보</a>
         <a class="sub-menu" href="#">캐릭터 스킨 일람</a>
         <a class="sub-menu" href="#">해역별 드롭 캐릭터</a> -->

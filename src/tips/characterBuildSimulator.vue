@@ -75,8 +75,8 @@
           </div>
         </td>
       </tr>
-      <tr v-if="buildCounter != 0">
-        <th>누적건조결과</th>
+      <tr v-if="buildCounter != 0" class="resetButtonContainer">
+        <th>누적건조결과<button type="button" class="resetButton" @click="resetDock">초기화</button></th>
       </tr>
       <tr>
         <td>
@@ -151,6 +151,12 @@ export default {
     characterBuild() {
       this.buildCounter += 1
       this.buildingProcess()
+    },
+    resetDock() {
+      this.dock = [{}]
+      this.usedCube = 0
+      this.usedGold = 0
+      this.buildCounter = 0
     }
   }
 }
@@ -190,6 +196,10 @@ export default {
   }
   .buildButton {
     width: 8em;
+  }
+  .resetButton {
+    position: absolute;
+    right: 4.5em;
   }
   .buildButtonArea {
     margin-top: 2em;

@@ -51,6 +51,7 @@ export default {
   }
   .noticeContentBox {
     background-color: white;
+    min-height: 30em;
     margin-bottom: 7em;
   }
   .noticeContentTitle {

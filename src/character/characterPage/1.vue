@@ -83,6 +83,9 @@
         <tr>
           <th class="charStatHead">한정</th><td>{{ charData.limited }}</td><th class="charStatHead">드랍</th><td>{{ charData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ charData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ charData.etcavailability }}</td>
         </tr>
+        <tr v-if="charData.limited == 'X' && charData.dropspot != null">
+          <th class="charStatHead">드랍장소</th><td colspan="7">{{ charData.dropspot }}</td>
+        </tr>
       </table>
     </div>
     <div class="skillBox">
@@ -224,6 +227,9 @@
           <tr>
             <th class="charStatHead">한정</th><td>{{ remodelCharData.limited }}</td><th class="charStatHead">드랍</th><td>{{ remodelCharData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ remodelCharData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ remodelCharData.etcavailability }}</td>
           </tr>
+          <tr v-if="remodelCharData.limited == 'X' && remodelCharData.dropspot != null">
+            <th class="charStatHead">드랍장소</th><td colspan="7">{{ remodelCharData.dropspot }}</td>
+          </tr>
         </table>
       </div>
       <div class="skillBox">
@@ -313,6 +319,9 @@ export default {
               id: self.remodelId
             }). then(function (response) {
               self.remodelCharData = response.data[0]
+              if (self.remodelCharData.time === null) {
+                self.remodelCharData.buildtime = "건조불가"
+              }
               if (self.remodelCharData.limited == 0) {
                 self.remodelCharData.limited = "X"
               }
@@ -328,7 +337,7 @@ export default {
             })
           }
           if (self.charData.time === null) {
-            self.charData.time = "건조불가"
+            self.charData.buildtime = "건조불가"
           }
           if (self.charData.limited == 0) {
             self.charData.limited = "X"
