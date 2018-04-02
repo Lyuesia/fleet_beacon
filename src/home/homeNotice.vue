@@ -3,7 +3,7 @@
     <div class="homeNoticeTitle fullBox outterBorder roundBorder">
       <div class="innerBorder roundBorder title">
         ㆎ공지사항
-        <!-- <span class="rFloat homeNoticeExtend"><router-link to="/notice">more</router-link></span> -->
+        <span class="rFloat homeNoticeExtend"><router-link to="/notice">more</router-link></span>
       </div>
     </div>
     <div class="homeNoticeList fullBox outterBorder roundBorder">

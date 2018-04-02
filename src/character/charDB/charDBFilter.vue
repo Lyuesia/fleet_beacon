@@ -2,119 +2,33 @@
   <div class="charDB">
     <div class="filterArea fullBox">
       <table class="fullBox filterTable">
+        <colgroup>
+          <col width="25%">
+          <col width="50%">
+          <col width="25%">
+        </colgroup>
         <tr>
-          <th class="title fourthBox">소속진영</th>
-          <th class="title halfBox">함정종류</th>
-          <th class="title fourthBox">레어도</th>
+          <th class="title fourthBox">소속진영<input type="checkbox" v-model="countrySelectAll" @change="checkBoxToggle"></th>
+          <th class="title halfBox">함정종류<input type="checkbox" v-model="typeSelectAll" @change="checkBoxToggle"></th>
+          <th class="title fourthBox">레어도<input type="checkbox" v-model="raritySelectAll" @change="checkBoxToggle"></th>
         </tr>
         <tr class="filterSelection">
           <td>
-            <div class="halfBox lFloat">
-              <div class="subCheckBox">
-                <input type="checkbox" id="America" value="미국" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="America">미국</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Japan" value="일본" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="Japan">일본</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="China" value="중국" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="China">중국</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Unknown" value="불명" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="Unknown">불명</label>
-              </div>
-            </div>
-            <div class="halfBox lFloat">
-              <div class="subCheckBox">
-                <input type="checkbox" id="UnitedKingdom" value="영국" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="UnitedKingdom">영국</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Germany" value="독일" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="Germany">독일</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Soviet" value="소련" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="Soviet">소련</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Neptune" value="차원" v-model="shipCountry" @change="checkBoxToggle">
-                <label for="Neptune">차원</label>
-              </div>
-
+            <div class="subCheckBox lFloat" v-for="checkboxes in countries">
+              <input type="checkbox" :id="checkboxes.country" :value="checkboxes.country" v-model="shipCountry" @change="checkBoxToggle">
+              <label :for="checkboxes.country">{{ checkboxes.country }}</label>
             </div>
           </td>
           <td>
-            <div class="thirdBox lFloat">
-              <div class="subCheckBox">
-                <input type="checkbox" id="Destroyer" value="구축함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Destroyer">구축함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Battlecruiser" value="순양전함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Battlecruiser">순양전함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Carrier" value="항공모함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Carrier">항공모함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="HybridCarrier" value="항공전함" v-model="shipType" @change="checkBoxToggle">
-                <label for="HybridCarrier">항공전함</label>
-              </div>
-            </div>
-            <div class="thirdBox lFloat">
-              <div class="subCheckBox">
-                <input type="checkbox" id="Lightcruiser" value="경순양함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Lightcruiser">경순양함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Battleship" value="전함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Battleship">전함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Monitor" value="모니터함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Monitor">모니터함</label>
-              </div>
-            </div>
-            <div class="thirdBox lFloat">
-              <div class="subCheckBox">
-                <input type="checkbox" id="Heavycruiser" value="중순양함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Heavycruiser">중순양함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Lightcarrier" value="경항공모함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Lightcarrier">경항공모함</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="Repairship" value="공작함" v-model="shipType" @change="checkBoxToggle">
-                <label for="Repairship">공작함</label>
-              </div>
+            <div class="middleSubCheckBox lFloat" v-for="checkboxes in types">
+              <input type="checkbox" :id="checkboxes.type" :value="checkboxes.type" v-model="shipType" @change="checkBoxToggle">
+              <label :for="checkboxes.type">{{ checkboxes.type }}</label>
             </div>
           </td>
           <td>
-            <div class="halfBox lFloat preSubCheckBox">
-              <div class="subCheckBox">
-                <input type="checkbox" id="ssr" value="SSR" v-model="shipRarity" @change="checkBoxToggle">
-                <label for="ssr">SSR</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="r" value="R" v-model="shipRarity" @change="checkBoxToggle">
-                <label for="r">R</label>
-              </div>
-            </div>
-            <div class="halfBox lFloat preSubCheckBox">
-              <div class="subCheckBox">
-                <input type="checkbox" id="sr" value="SR" v-model="shipRarity" @change="checkBoxToggle">
-                <label for="sr">SR</label>
-              </div>
-              <div class="subCheckBox">
-                <input type="checkbox" id="n" value="N" v-model="shipRarity" @change="checkBoxToggle">
-                <label for="n">N</label>
-              </div>
+            <div class="subCheckBox lFloat" v-for="checkboxes in rarities">
+              <input type="checkbox" :id="checkboxes.rarity" :value="checkboxes.rarity" v-model="shipRarity" @change="checkBoxToggle">
+              <label :for="checkboxes.rarity">{{ checkboxes.rarity }}</label>
             </div>
           </td>
         </tr>
@@ -190,7 +104,62 @@ export default {
       shipType: [],
       shipRarity: [],
       shipName: "",
-      filtered: []
+      filtered: [],
+      countries: [],
+      types: [],
+      rarities: []
+    }
+  },
+  mounted() {
+    let self = this
+    this.$http.get("/characterfiltermenu").then((result) => {
+      self.countries = result.data[0]
+      self.types = result.data[1]
+      self.rarities = result.data[2]
+    })
+  },
+  computed: {
+    countrySelectAll: {
+      get: function () {
+        return this.countries ? this.shipCountry.length == this.countries.length : false;
+      },
+      set: function (value) {
+        var shipCountry = [];
+        if (value) {
+          this.countries.forEach(function (country) {
+            shipCountry.push(country.country);
+          });
+        }
+        this.shipCountry = shipCountry;
+      }
+    },
+    typeSelectAll: {
+      get: function () {
+        return this.types ? this.shipType.length == this.types.length : false;
+      },
+      set: function (value) {
+        var shipType = [];
+        if (value) {
+          this.types.forEach(function (type) {
+            shipType.push(type.type);
+          });
+        }
+        this.shipType = shipType;
+      }
+    },
+    raritySelectAll: {
+      get: function () {
+        return this.rarities ? this.shipRarity.length == this.rarities.length : false;
+      },
+      set: function (value) {
+        var shipRarity = [];
+        if (value) {
+          this.rarities.forEach(function (rarity) {
+            shipRarity.push(rarity.rarity);
+          });
+        }
+        this.shipRarity = shipRarity;
+      }
     }
   },
   methods: {
@@ -207,9 +176,6 @@ export default {
     nameSearch() {
       let self = this
       this.$http.post("/charactersfilterwithname", {
-        rarity: this.shipRarity,
-        country: this.shipCountry,
-        shipType: this.shipType,
         shipName: this.shipName
       }).then((result) => {
         self.filtered = result.data
@@ -236,6 +202,12 @@ export default {
   .subCheckBox {
     padding: 0.7em;
     vertical-align: middle;
+    width: 40%;
+  }
+  .middleSubCheckBox {
+    padding: 0.7em;
+    vertical-align: middle;
+    width: 28.5%;
   }
   .searchBoxTitle {
     text-align: center;

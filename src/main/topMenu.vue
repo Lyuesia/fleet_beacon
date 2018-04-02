@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="menu-bar-space">
     <div class="top-menu">
-      <router-link to="/">홈</router-link>
+      <router-link v-on:click.native="closeAllDropdown" class="useable" to="/">홈</router-link>
     </div>
     <div class="top-menu">
       <a class="top-menu-link" @click="topMenu2=!topMenu2">이벤트 정보</a>
@@ -22,11 +22,11 @@
       </div> -->
     </div>
     <div class="top-menu">
-      <a  class="top-menu-link" @click="topMenu4=!topMenu4" v-bind:class="{ active: topMenu4 }">캐릭터 정보</a>
+      <a  class="top-menu-link useable" @click="topMenu4=!topMenu4" v-bind:class="{ active: topMenu4 }">캐릭터 정보</a>
       <div class="dropdown-menu" v-if="topMenu4">
-        <router-link to="/charDB">캐릭터 DB</router-link>
-        <router-link to="/characterbuildlist">건조시간표</router-link>
-        <router-link to="/characterDropSpots">해역별 함선드랍</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/charDB">캐릭터 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/characterbuildlist">건조시간표</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/characterDropSpots">해역별 함선드랍</router-link>
         <!-- <a class="sub-menu" href="#">캐릭터 개조 정보</a>
         <a class="sub-menu" href="#">캐릭터 스킨 일람</a>
         <a class="sub-menu" href="#">해역별 드롭 캐릭터</a> -->
@@ -41,11 +41,11 @@
       </div> -->
     </div>
     <div class="top-menu">
-      <a class="top-menu-link" @click="topMenu6=!topMenu6" v-bind:class="{ active: topMenu6 }">게임플레이 팁</a>
+      <a class="top-menu-link useable" @click="topMenu6=!topMenu6" v-bind:class="{ active: topMenu6 }">게임플레이 팁</a>
       <div class="dropdown-menu" v-if="topMenu6">
-        <router-link class="sub-menu" to="/charactersSelectionTips">함선 추천</router-link>
+        <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/charactersSelectionTips">함선 추천</router-link>
         <!-- <router-link class="sub-menu" to="/equipSelectionTips">장비 추천</router-link> -->
-        <router-link class="sub-menu" to="/characterBuildSimulator">건조 시뮬레이터</router-link>
+        <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/characterBuildSimulator">건조 시뮬레이터</router-link>
       </div>
     </div>
   </div>
@@ -61,6 +61,16 @@ export default {
       topMenu4: false,
       topMenu5: false,
       topMenu6: false
+    }
+  },
+  methods: {
+    closeAllDropdown() {
+      this.topMenu1 = false
+      this.topMenu2 = false
+      this.topMenu3 = false
+      this.topMenu4 = false
+      this.topMenu5 = false
+      this.topMenu6 = false
     }
   }
 }
@@ -81,7 +91,7 @@ export default {
     float: left;
     font-size: 16px;
   }
-  .top-menu:hover>a{
+  .top-menu:hover>a.useable{
     background-color: #1e69eb;
     padding-top: 1.5em;
     padding-bottom: 1.5em;

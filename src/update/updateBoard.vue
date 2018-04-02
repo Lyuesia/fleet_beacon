@@ -1,24 +1,24 @@
 <template lang="html">
-  <div class="noticeBoardArea">
-    <div class="fullBox outterBorder roundBorder noticeBoardTitle">
+  <div class="updateBoardArea">
+    <div class="fullBox outterBorder roundBorder updateBoardTitle">
       <div class="innerBorder roundBorder title">
-        ㆎ공지사항
+        ㆎ업데이트 내역
       </div>
     </div>
     <div class="outterBorder">
-      <table class="noticeList">
-        <tr class="noticeListHeader">
-          <th class="noticeIdHeader">번호</th><th class="noticeTitleHeader">제목</th><th class="noticeWritterHeader">작성자</th><th class="noticeTimeHeader">작성일</th>
+      <table class="updateList">
+        <tr class="updateListHeader">
+          <th class="updateIdHeader">번호</th><th class="updateTitleHeader">제목</th><th class="updateWritterHeader">작성자</th><th class="updateTimeHeader">작성일</th>
         </tr>
-        <tr class="noticeListArticle" v-for="notice in noticeList">
-          <td>{{ notice.id }}</td><td class="noticeListContent"><router-link :to="'/notice/'+notice.id">{{ notice.title }}</router-link></td><td>{{ notice.writer }}</td><td class="noticeListTime">{{ notice.time }}</td>
+        <tr class="updateListArticle" v-for="update in updateList">
+          <td>{{ update.id }}</td><td class="updateListContent"><router-link :to="'/update/'+update.id">{{ update.title }}</router-link></td><td>{{ update.writer }}</td><td class="updateListTime">{{ update.time }}</td>
         </tr>
       </table>
     </div>
     <div class="loadMoreButton" v-if="loadMore">
       <img src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/buttonImage/morebutton.png" @click="loadMoreNotice">
     </div>
-    <div class="noticefooter">
+    <div class="updatefooter">
 
     </div>
   </div>
@@ -28,34 +28,34 @@
 export default {
   data() {
     return {
-      noticeList: [],
+      updateList: [],
       loadMore: false,
-      noticeLength: 20,
+      updateLength: 20,
       lastIndex: 0
     }
   },
   mounted() {
     let self = this
-    this.$http.post("/noticepageload", {
-      noticeLength: this.noticeLength
+    this.$http.post("/updatepageload", {
+      updateLength: this.updateLength
     }).then((result) => {
-      self.noticeList = result.data
-      self.lastIndex = self.noticeList[self.noticeList.length - 1].id
-      if (self.noticeList.length == self.noticeLength) {
+      self.updateList = result.data
+      self.lastIndex = self.updateList[self.updateList.length - 1].id
+      if (self.updateList.length == self.updateLength) {
         self.loadMore = true
       }
     }).catch((error) => console.log(error))
   },
   methods: {
-    loadMoreNotice() {
+    loadMoreupdate() {
       let self = this
-      this.$http.post("/noticepageloadmore", {
-        noticeLength: this.noticeLength,
+      this.$http.post("/updatepageloadmore", {
+        updateLength: this.updateLength,
         lastIndex: this.lastIndex
       }).then((result) => {
-        self.noticeList.push.apply(self.noticeList, result.data);
-        self.lastIndex = self.noticeList[self.noticeList.length - 1].id
-        if (self.noticeList.length == self.noticeLength) {
+        self.updateList.push.apply(self.updateList, result.data);
+        self.lastIndex = self.updateList[self.updateList.length - 1].id
+        if (self.updateList.length == self.updateLength) {
           self.loadMore = true
         }
         else {
@@ -81,14 +81,14 @@ export default {
     padding: 0.2em;
     height: 1.5em;
   }
-  .noticeBoardArea {
+  .updateBoardArea {
     padding-left: 0.4em;
     padding-right: 0.4em;
   }
-  .noticeBoardTitle {
+  .updateBoardTitle {
     margin-bottom: 5px;
   }
-  .noticeList {
+  .updateList {
     font-size: 14px;
     margin: 5px;
     margin-top: 0;
@@ -96,28 +96,28 @@ export default {
     text-align: center;
     width: 99%;
   }
-  .noticeIdHeader {
+  .updateIdHeader {
     width: 5%;
   }
-  .noticeTitleHeader {
+  .updateTitleHeader {
     width: 70%;
   }
-  .noticeWritterHeader {
+  .updateWritterHeader {
     width: 10%;
   }
-  .noticeTimeHeader {
+  .updateTimeHeader {
     width: 15%;
   }
-  .noticeListHeader {
+  .updateListHeader {
     background-color: #bfd6f9;
   }
-  .noticeListArticle {
+  .updateListArticle {
     background-color: #cce6ff;
   }
-  .noticeListTime {
+  .updateListTime {
     font-size: 10px;
   }
-  .noticeListContent {
+  .updateListContent {
     text-align: left;
   }
   .loadMoreButton {

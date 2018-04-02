@@ -7,7 +7,11 @@
     </div>
     <div class="charStatBox">
       <div class="lFloat halfBox charImgBox">
-        <img :src="charData.standingimage" alt="">
+        <div class="imgFrame">
+          <div class="innerFrame">
+            <img :src="charData.standingimage" alt="">
+          </div>
+        </div>
       </div>
       <div class="rFloat halfBox charTableBox">
         <table class="fullBox charStatTable">
@@ -151,7 +155,11 @@
       </div>
       <div class="charStatBox">
         <div class="lFloat halfBox charImgBox">
-          <img :src="remodelCharData.standingimage" alt="">
+          <div class="imgFrame">
+            <div class="innerFrame">
+              <img :src="remodelCharData.standingimage" alt="">
+            </div>
+          </div>
         </div>
         <div class="rFloat halfBox charTableBox">
           <table class="fullBox charStatTable">
@@ -374,9 +382,34 @@ export default {
   }
   .charImgBox {
     background-color: white;
-    height: 29.16em;
+    height: 29.5em;
     margin-bottom: 2em;
     text-align: center;
+    vertical-align: middle;
+  }
+  .imgFrame {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 0;
+    padding-bottom: 108%;
+  }
+  .innerFrame {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-size: 0;
+  }
+  .innerFrame:before,
+  .frameBefore {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+  }
+  .innerFrame img {
+    max-width: 100%;
+    height: auto;
     vertical-align: middle;
   }
   .charStatBox {

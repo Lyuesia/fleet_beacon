@@ -11,7 +11,7 @@ import homeUpdate from "./homeUpdate.vue"
 export default {
   components: {
     homeNotice,
-    homeUpdate,
+    homeUpdate
   }
 }
 </script>

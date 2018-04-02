@@ -3,6 +3,7 @@
     <div class="homeUpdateTitle fullBox outterBorder roundBorder">
       <div class="innerBorder roundBorder title">
         ㆎ업데이트 내역
+        <span class="rFloat homeUpdateExtend"><router-link to="/update">more</router-link></span>
       </div>
     </div>
     <div class="homeUpdateList fullBox outterBorder roundBorder">
@@ -59,6 +60,12 @@ export default {
   }
   .update {
     padding: 0.1em
+  }
+  .homeUpdateExtend {
+    line-height: 1.4em;
+    padding-right: 0.5em;
+    font-size: 12px;
+    letter-spacing: 2px;
   }
   .homeUpdateTime {
     font-size: 80%;
