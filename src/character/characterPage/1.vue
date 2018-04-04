@@ -147,7 +147,7 @@
       </table>
 
       <div class="remodelInfoButtonArea fullBox">
-        <button type="button" @click="remodelDetails=!remodelDetails" class="remodelInfoButton" v-if="charData.remodelid != null">개장 세부정보 보기</button>
+        <button type="button" @click="remodelDetails=!remodelDetails" class="remodelInfoButton" v-if="charData.remodelid != null">개조 세부정보 보기</button>
       </div>
 
       <table class="remodelRequirementsTable fullBox" v-if="remodelDetails == true">
@@ -187,7 +187,7 @@
       </table>
       <table class="remodelStatDifferenceTable fullBox" v-if="remodelDetails == true">
         <tr>
-          <th colspan="5" class="charStatHead">개장 후 스텟 변화량</th>
+          <th colspan="5" class="charStatHead">개조 후 스텟 변화량</th>
         </tr>
         <tr>
           <th class="charStatHead">내구</th><th class="charStatHead">장갑</th><th class="charStatHead">포격</th><th class="charStatHead">뇌장</th><th class="charStatHead">장전</th>
@@ -204,7 +204,7 @@
       </table>
       <table class="remodelEquipDifferenceTable fullBox" v-if="remodelDetails == true">
         <tr>
-          <th colspan="6" class="charStatHead">개장 후 장비 변화</th>
+          <th colspan="6" class="charStatHead">개조 후 장비 변화</th>
         </tr>
         <tr>
           <th colspan="2" class="charStatHead">장비칸1</th><th colspan="2" class="charStatHead">장비칸2</th><th colspan="2" class="charStatHead">장비칸3</th>
