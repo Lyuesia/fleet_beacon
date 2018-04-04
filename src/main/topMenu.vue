@@ -27,6 +27,7 @@
         <router-link v-on:click.native="closeAllDropdown" to="/charDB">캐릭터 DB</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/characterbuildlist">건조시간표</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/characterDropSpots">해역별 함선드랍</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/characterRemodelInfo">함선 개조 정보</router-link>
         <!-- <a class="sub-menu" href="#">캐릭터 개조 정보</a>
         <a class="sub-menu" href="#">캐릭터 스킨 일람</a>
         <a class="sub-menu" href="#">해역별 드롭 캐릭터</a> -->

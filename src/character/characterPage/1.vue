@@ -145,6 +145,74 @@
           <td>{{ charData.equipnum1 }}</td><td>{{ charData.equipnum1eff }}</td><td>{{ charData.equipnum2 }}</td><td>{{ charData.equipnum2eff }}</td><td>{{ charData.equipnum3 }}</td><td>{{ charData.equipnum3eff }}</td>
         </tr>
       </table>
+
+      <div class="remodelInfoButtonArea fullBox">
+        <button type="button" @click="remodelDetails=!remodelDetails" class="remodelInfoButton" v-if="charData.remodelid != null">개장 세부정보 보기</button>
+      </div>
+
+      <table class="remodelRequirementsTable fullBox" v-if="remodelDetails == true">
+        <colgroup>
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <col width="10%">
+          <col width="25%">
+          <col width="40%">
+        </colgroup>
+        <tr>
+          <th colspan="8" class="charStatHead">개조 요구 수치</th>
+        </tr>
+        <tr>
+          <th class="charStatHead">Lv</th>
+          <th class="charStatHead">골드</th>
+          <th class="charStatHead">T1</th>
+          <th class="charStatHead">T2</th>
+          <th class="charStatHead">T3</th>
+          <th class="charStatHead">동일함선</th>
+          <th class="charStatHead">요구 재료</th>
+          <th class="charStatHead">특이사항</th>
+        </tr>
+        <tr>
+          <td>{{ charData.remodelmaxlevel }}</td>
+          <td>{{ charData.remodelgold }}</td>
+          <td>{{ charData.t1paper }}</td>
+          <td>{{ charData.t2paper }}</td>
+          <td>{{ charData.t3paper }}</td>
+          <td>{{ charData.sameshipneeded }}</td>
+          <td>{{ charData.upgradeitem1 }}<br />{{ charData.upgradeitem2 }}</td>
+          <td>{{ charData.etc }}</td>
+        </tr>
+      </table>
+      <table class="remodelStatDifferenceTable fullBox" v-if="remodelDetails == true">
+        <tr>
+          <th colspan="5" class="charStatHead">개장 후 스텟 변화량</th>
+        </tr>
+        <tr>
+          <th class="charStatHead">내구</th><th class="charStatHead">장갑</th><th class="charStatHead">포격</th><th class="charStatHead">뇌장</th><th class="charStatHead">장전</th>
+        </tr>
+        <tr>
+          <td>{{ charData.upgradehealth }}</td><td>{{ charData. upgradearmor }}</td><td>{{ charData.upgradefirepower }}</td><td>{{ charData.upgradetorpedo }}</td><td>{{ charData.upgradereload }}</td>
+        </tr>
+        <tr>
+          <th class="charStatHead">기동</th><th class="charStatHead">대공</th><th class="charStatHead">항공</th><th class="charStatHead">연비</th><th class="charStatHead">항속</th>
+        </tr>
+        <tr>
+          <td>{{ charData.upgradeagility }}</td><td>{{ charData.upgradeantiair }}</td><td>{{ charData.upgradeairpower }}</td><td>{{ charData.upgradeefficiency }}</td><td>{{ charData.upgradespeed }}</td>
+        </tr>
+      </table>
+      <table class="remodelEquipDifferenceTable fullBox" v-if="remodelDetails == true">
+        <tr>
+          <th colspan="6" class="charStatHead">개장 후 장비 변화</th>
+        </tr>
+        <tr>
+          <th colspan="2" class="charStatHead">장비칸1</th><th colspan="2" class="charStatHead">장비칸2</th><th colspan="2" class="charStatHead">장비칸3</th>
+        </tr>
+        <tr>
+          <td>{{ charData.upgradeequipnum1 }}</td><td>{{ charData.upgradeequipnum1eff }}</td><td>{{ charData.upgradeequipnum2 }}</td><td>{{ charData.upgradeequipnum2eff }}</td><td>{{ charData.upgradeequipnum3 }}</td><td>{{ charData.upgradeequipnum3eff }}</td>
+        </tr>
+      </table>
     </div>
 
     <div class="remodelArea" v-if="charData.remodel !== 0">
@@ -306,7 +374,8 @@ export default {
       id: 0,
       remodelId: 0,
       charData: {},
-      remodelCharData: {}
+      remodelCharData: {},
+      remodelDetails: false
     }
   },
   mounted() {
@@ -358,6 +427,14 @@ export default {
           }
           else {
             self.charData.dropavailability = "O"
+          }
+          if (self.charData.remodelid != null) {
+            if (self.charData.sameshipneeded == 1) {
+              self.charData.sameshipneeded = "O"
+            }
+            else {
+              self.charData.sameshipneeded = "X"
+            }
           }
         }).catch((error) => console.log(error))
   }
@@ -441,6 +518,24 @@ export default {
   }
   .equipBox {
     font-size: 14px;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
+  }
+  .remodelRequirementsTable {
+    margin-top: 2em;
+  }
+  .remodelStatDifferenceTable {
+    margin-top: 2em;
+  }
+  .remodelEquipDifferenceTable {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  .remodelInfoButton {
+    text-align: center;
+    padding: 1em;
+    margin-top: 3em;
+  }
+  .remodelInfoButtonArea {
+    text-align: center;
   }
 </style>
