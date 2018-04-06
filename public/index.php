@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116491021-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-116491021-1');
-    </script>
     <link rel="icon" type="image/png" href="http://ec2-13-125-244-160.ap-northeast-2.compute.amazonaws.com/image/favicon.png" />
     <meta charset="utf-8">
+    <meta name="google-site-verification" content="ferUKGKdIjDZiIDgpVRPq1E9-Fzk15uKACTMfCKZLC4" />
     <title>함대신호소</title>
   </head>
   <body>
