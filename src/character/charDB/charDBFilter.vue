@@ -4,12 +4,13 @@
       <table class="fullBox filterTable">
         <colgroup>
           <col width="25%">
-          <col width="50%">
+          <col width="25%">
+          <col width="25%">
           <col width="25%">
         </colgroup>
         <tr>
           <th class="title fourthBox">소속진영<input type="checkbox" v-model="countrySelectAll" @change="checkBoxToggle"></th>
-          <th class="title halfBox">함정종류<input type="checkbox" v-model="typeSelectAll" @change="checkBoxToggle"></th>
+          <th class="title halfBox" colspan="2">함정종류<input type="checkbox" v-model="typeSelectAll" @change="checkBoxToggle"></th>
           <th class="title fourthBox">레어도<input type="checkbox" v-model="raritySelectAll" @change="checkBoxToggle"></th>
         </tr>
         <tr class="filterSelection">
@@ -19,7 +20,7 @@
               <label :for="checkboxes.country">{{ checkboxes.country }}</label>
             </div>
           </td>
-          <td>
+          <td colspan="2">
             <div class="middleSubCheckBox lFloat" v-for="checkboxes in types">
               <input type="checkbox" :id="checkboxes.type" :value="checkboxes.type" v-model="shipType" @change="checkBoxToggle">
               <label :for="checkboxes.type">{{ checkboxes.type }}</label>
@@ -36,10 +37,50 @@
           <td class="searchBoxTitle title">
               함정이름
           </td>
-          <td colspan="2">
+          <td colspan="3">
             <div class="searchBox">
               <input class="searchInputBox" type="text" v-model="shipName">
               <button type="button" @click="nameSearch">검색</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="title" colspan="4" v-on:click.prevent="advancedFilterDrop=!advancedFilterDrop">고급 필터 설정 ▼</th>
+        </tr>
+        <tr v-if="advancedFilterDrop">
+          <th class="title">개장</th><th class="title">드랍</th><th class="title">건조</th><th class="title">한정</th>
+        </tr>
+        <tr class="filterSelection" v-if="advancedFilterDrop">
+          <td>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="remodelship" v-model="remodelShip" @change="checkBoxToggle">
+              <label for="remodelship">개장함만 표시</label>
+            </div>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="remodelavailable" v-model="remodelAvailable" @change="checkBoxToggle">
+              <label for="remodelavailable">개장이 존재하는 함만 표시</label>
+            </div>
+          </td>
+          <td>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="dropavailable" v-model="dropAvailable" @change="checkBoxToggle">
+              <label for="dropavailable">드랍 가능한 함만 표시</label>
+            </div>
+          </td>
+          <td>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="buildavailable" v-model="buildAvailable" @change="checkBoxToggle">
+              <label for="buildavailable">건조 가능한 함만 표시</label>
+            </div>
+          </td>
+          <td>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="limitedship" v-model="limitedShip" @change="checkBoxToggle">
+              <label for="limitedship">한정함만 표시</label>
+            </div>
+            <div class="advancedCheckBox lFloat">
+              <input type="checkbox" id="nonlimitedship" v-model="nonLimitedShip" @change="checkBoxToggle">
+              <label for="nonlimitedship">한정이 아닌 함만 표시</label>
             </div>
           </td>
         </tr>
@@ -107,7 +148,14 @@ export default {
       filtered: [],
       countries: [],
       types: [],
-      rarities: []
+      rarities: [],
+      advancedFilterDrop: false,
+      remodelShip: false,
+      remodelAvailable: false,
+      dropAvailable: false,
+      buildAvailable: false,
+      limitedShip: false,
+      nonLimitedShip: false
     }
   },
   mounted() {
@@ -168,7 +216,13 @@ export default {
       this.$http.post("/charactersfilter", {
         rarity: this.shipRarity,
         country: this.shipCountry,
-        shipType: this.shipType
+        shipType: this.shipType,
+        remodelShip: this.remodelShip,
+        remodelAvailable: this.remodelAvailable,
+        dropAvailable: this.dropAvailable,
+        buildAvailable: this.buildAvailable,
+        limitedShip: this.limitedShip,
+        nonLimitedShip: this.nonLimitedShip
       }).then((result) => {
         self.filtered = result.data
       }).catch((error) => console.log(error))
@@ -209,6 +263,10 @@ export default {
     vertical-align: middle;
     width: 28.5%;
   }
+  .advancedCheckBox {
+    padding: 0.7em;
+    vertical-align: middle;
+  }
   .searchBoxTitle {
     text-align: center;
   }
@@ -219,7 +277,7 @@ export default {
     width: 90%;
   }
   .filterSelection {
-    font-size: 14px;
+    font-size: 85%;
   }
   .charListArea {
     margin-bottom: 6em;
