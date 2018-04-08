@@ -5,6 +5,7 @@ import charactersRoutes from "./charactersRoutes.js"
 import noticesRoutes from "./noticesRoutes.js"
 import tipsRoutes from "./tipsRoutes.js"
 import updateRoutes from "./updateRoutes.js"
+import eventsRoutes from "./eventsRoutes.js"
 
 Vue.use(Router)
 
@@ -17,6 +18,7 @@ export default new Router({
     ...noticesRoutes,
     ...tipsRoutes,
     ...charactersRoutes,
-    ...updateRoutes
+    ...updateRoutes,
+    ...eventsRoutes
   ]
 })

@@ -4,13 +4,14 @@
       <router-link v-on:click.native="closeAllDropdown" class="useable" to="/">홈</router-link>
     </div>
     <div class="top-menu">
-      <a class="top-menu-link" @click="topMenu2=!topMenu2">이벤트 정보</a>
-      <!-- <div class="dropdown-menu">
-        <a class="sub-menu" href="#">이벤트 임무</a>
+      <a class="top-menu-link useable" @click="topMenu2=!topMenu2" v-bind:class="{ active: topMenu2 }">이벤트 정보</a>
+      <div class="dropdown-menu"  v-if="topMenu2">
+        <router-link v-on:click.native="closeAllDropdown" to="/koreanevent">한섭 이벤트 정보</router-link>
+        <!-- <a class="sub-menu" href="#">이벤트 임무</a>
         <a class="sub-menu" href="#">이벤트 해역 공략</a>
         <a class="sub-menu" href="#">이벤트 BGM</a>
-        <a class="sub-menu" href="#">이벤트 해역 드랍</a>
-      </div> -->
+        <a class="sub-menu" href="#">이벤트 해역 드랍</a> -->
+      </div>
     </div>
     <div class="top-menu">
       <a class="top-menu-link" @click="topMenu3=!topMenu3">메인 스토리 정보</a>
