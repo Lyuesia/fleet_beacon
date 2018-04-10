@@ -2,7 +2,7 @@
   <div class="wikiArea fullBox">
     <div class="outterBorder roundBorder">
       <div class="innerBorder roundBorder title">
-       ㆎ 노력, 희망과 계획
+       ㆎ 그라프 쉬페 추격전
       </div>
     </div>
     <div class="indexTableArea">
@@ -42,19 +42,13 @@
              <col width="70%">
            </colgroup>
            <tr>
-             <th>베이스</th><td colspan="2">중형건조</td>
+             <th>베이스</th><td colspan="2"></td>
            </tr>
            <tr>
              <th>레어도</th><th>함종</th><th>이름</th>
            </tr>
            <tr>
-             <th rowspan="2">SSR</th><th>전함</th><td>프린스 오브 웨일즈</td>
-           </tr>
-           <tr>
-             <th>중순</th><td>아타고</td>
-           </tr>
-           <tr>
-             <th>SR</th><th>구축함</th><td>뱀파이어</td>
+             <th>SR</th><th>중순</th><td>그라프 쉬페</td>
            </tr>
          </table>
       </div>
@@ -73,22 +67,34 @@
             <th>임무내용</th><th>보상</th>
           </tr>
           <tr>
-            <td>SP1 클리어</td><td>범용형 부린 1척 (보부린)</td>
+            <td>SP1 클리어</td><td>큐브 1개, 600골드</td>
           </tr>
           <tr>
-            <td>SP1 3성 클리어</td><td>100코인</td>
+            <td>SP2 클리어</td><td>큐브 1개, 600골드</td>
           </tr>
           <tr>
-            <td>SP2 클리어</td><td>2500골드</td>
+            <td>SP3 클리어</td><td>큐브 2개, 1500골드</td>
           </tr>
           <tr>
-            <td>SP2 3성 클리어</td><td>랜덤 장비상자 T4 2개</td>
+            <td>SP1 3성 클리어</td><td>200기름, 순양 설계도 T2 1장</td>
           </tr>
           <tr>
-            <td>SP3 클리어</td><td>범용형 부린 1척 (보부린)</td>
+            <td>SP2 3성 클리어</td><td>200기름, 순양 설계도 T2 1장</td>
           </tr>
           <tr>
-            <td>SP3 3성 클리어</td><td>356mm 4연장포 T3 1개</td>
+            <td>SP3 3성 클리어</td><td>283mm SKC28 3연장포 T3 1개, 순양 설계도 T3 1장</td>
+          </tr>
+          <tr>
+            <td>SP3 10회 클리어</td><td>순양 설계도 T2 2장</td>
+          </tr>
+          <tr>
+            <td>SP3 10회 클리어</td><td>순양 설계도 T2 2장</td>
+          </tr>
+          <tr>
+            <td>SP3 20회 클리어</td><td>순양 설계도 T3 2장</td>
+          </tr>
+          <tr>
+            <td>SP3 20회 클리어</td><td>어드미럴 그라프 쉬페</td>
           </tr>
         </table>
       </div>
@@ -114,31 +120,42 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp1.jpg" alt=""></td>
+             <td colspan="4"><img class="map" src="" alt=""></td>
            </tr>
            <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
+             <th>최저 요구 레벨</th><td colspan="3"></td>
            </tr>
            <tr>
-             <th>적 레벨</th><td>일반: 28<br>보스: 30</td><th>보스전까지 전투횟수</th><td>2회 + 보스</td>
+             <th>적 레벨</th><td>일반: 35~38<br>보스: 40</td><th>보스전까지 전투횟수</th><td>4회 + 보스</td>
            </tr>
            <tr>
-             <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T2, 골드</td>
+             <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T3, 골드</td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/322.png" alt=""></td><td colspan="2">BTD-1 디스트로이어 T2</td>
+             <th>드롭 캐릭터</th>
+             <td colspan="3">
+               <div class="lFloat characterArea" v-for="character in sp1_characters_info">
+                 <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
+                 <div class="characterName">
+                   <router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link>
+                 </div>
+               </div>
+             </td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/329.png" alt=""></td><td colspan="2">풀머 T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/156.png" alt=""></td><td colspan="2">37mm 연장기관총 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/333.png" alt=""></td><td colspan="2">99식 함상폭격기 T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/180.png" alt=""></td><td colspan="2">102mm 고각포 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/349.png" alt=""></td><td colspan="2">소드피시 T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/384.png" alt=""></td><td colspan="2">개량형 보일러 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/359.png" alt=""></td><td colspan="2">텐잔 T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/416.png" alt=""></td><td colspan="2">함선수리시설 T2</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/30.png" alt=""></td><td colspan="2">127mm 단장포B T3</td>
            </tr>
          </table>
       </div>
@@ -160,13 +177,13 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp2.jpg" alt=""></td>
+             <td colspan="4"><img class="map" src="" alt=""></td>
            </tr>
            <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
+             <th>최저 요구 레벨</th><td colspan="3"></td>
            </tr>
            <tr>
-             <th>적 레벨</th><td>일반: 32<br>보스: 35</td><th>보스전까지 전투횟수</th><td>4회 + 보스</td>
+             <th>적 레벨</th><td>일반: 45~48<br>보스: 50</td><th>보스전까지 전투횟수</th><td>4회 + 보스</td>
            </tr>
            <tr>
              <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T3, 골드</td>
@@ -183,19 +200,19 @@
              </td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/15.png" alt=""></td><td colspan="2">102mm 3연장포(부포) T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/48.png" alt=""></td><td colspan="2">140mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/114.png" alt=""></td><td colspan="2">381mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/126.png" alt=""></td><td colspan="2">410mm 연장포 T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/93.png" alt=""></td><td colspan="2">203mm SKC 연장포 T3</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/165.png" alt=""></td><td colspan="2">QF 2파운드 4연장 폼폼포 T3</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/390.png" alt=""></td><td colspan="2">연료 필터 T3</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/164.png" alt=""></td><td colspan="2">QF 2파운드 4연장 폼폼포 T2</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/192.png" alt=""></td><td colspan="2">533mm 3연장어뢰 T3</td>
            </tr>
          </table>
       </div>
@@ -217,13 +234,13 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp3.jpg" alt=""></td>
+             <td colspan="4"><img class="map" src="" alt=""></td>
            </tr>
            <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
+             <th>최저 요구 레벨</th><td colspan="3"></td>
            </tr>
            <tr>
-             <th>적 레벨</th><td>일반: 38<br>보스: 40</td><th>보스전까지 전투횟수</th><td>5회 + 보스</td>
+             <th>적 레벨</th><td>일반: 55~58<br>보스: 60</td><th>보스전까지 전투횟수</th><td>5회 + 보스</td>
            </tr>
            <tr>
              <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T3, 골드</td>
@@ -240,19 +257,19 @@
              </td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/108.png" alt=""></td><td colspan="2">356mm 4연장포 T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/183.png" alt=""></td><td colspan="2">105mm SKC 연장고각포 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/69.png" alt=""></td><td colspan="2">152mm 연장포B T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/204.png" alt=""></td><td colspan="2">533mm 4연장자성어뢰 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/81.png" alt=""></td><td colspan="2">203mm 연장포A T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/54.png" alt=""></td><td colspan="2">150mm SKC/28 3연장포 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/107.png" alt=""></td><td colspan="2">356mm 4연장포 T2</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/96.png" alt=""></td><td colspan="2">283mm SKC28 3연장포 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/215.png" alt=""></td><td colspan="2">610mm 4연장어뢰 T2</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/203.png" alt=""></td><td colspan="2">533mm 4연장자성어뢰 T2</td>
            </tr>
          </table>
       </div>
@@ -273,8 +290,8 @@ export default {
       showDropDown3_2: true,
       showDropDown3_3: true,
       sp1_characters_num: [],
-      sp2_characters_num: [103,233,26,27,15,16,17,88,89,90,29,30,45,39,128,58,59,52,53,71,72,75,140],
-      sp3_characters_num: [135,103,94,133,144,34,35,122,121,128,6,8,9,5,240,239,238,104,39,52,53,71,72,75,140],
+      sp2_characters_num: [],
+      sp3_characters_num: [],
       sp1_characters_info: [],
       sp2_characters_info: [],
       sp3_characters_info: []
@@ -282,6 +299,11 @@ export default {
   },
   mounted() {
     let self = this
+    this.$http.post("/eventdropcharacterlist",{
+      characters_num: this.sp1_characters_num
+    }).then(function(result) {
+      self.sp1_characters_info = result.data
+    }).catch((error) => console.log(error))
     this.$http.post("/eventdropcharacterlist",{
       characters_num: this.sp2_characters_num
     }).then(function(result) {

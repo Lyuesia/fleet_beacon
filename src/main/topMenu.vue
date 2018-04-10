@@ -5,8 +5,9 @@
     </div>
     <div class="top-menu">
       <a class="top-menu-link useable" @click="topMenu2=!topMenu2" v-bind:class="{ active: topMenu2 }">이벤트 정보</a>
-      <div class="dropdown-menu"  v-if="topMenu2">
-        <router-link v-on:click.native="closeAllDropdown" to="/koreanevent">한섭 이벤트 정보</router-link>
+      <div class="dropdown-menu eventDropdown" v-if="topMenu2">
+        <router-link v-on:click.native="closeAllDropdown" to="/koreanevent">노력, 희망과 계획</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/japaneseevent">그라프 쉬페 추격전</router-link>
         <!-- <a class="sub-menu" href="#">이벤트 임무</a>
         <a class="sub-menu" href="#">이벤트 해역 공략</a>
         <a class="sub-menu" href="#">이벤트 BGM</a>
@@ -131,5 +132,8 @@ export default {
   }
   .active {
     background-color: #1e69eb;
+  }
+  .eventDropdown {
+    font-size: 90%;
   }
 </style>

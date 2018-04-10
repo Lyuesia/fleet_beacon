@@ -26,7 +26,7 @@ export default [
   {
     path: "/characterRemodelInfo",
     component: characterRemodelInfo
-  }
+  },
   // {
   //   path: "/characterstest/:id",
   //   component: charpagetest

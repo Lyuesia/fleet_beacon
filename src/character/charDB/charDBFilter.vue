@@ -39,7 +39,7 @@
           </td>
           <td colspan="3">
             <div class="searchBox">
-              <input class="searchInputBox" type="text" v-model="shipName">
+              <input class="searchInputBox" type="text" v-on:keyup.enter="nameSearch" v-model="shipName">
               <button type="button" @click="nameSearch">검색</button>
             </div>
           </td>
@@ -89,22 +89,22 @@
     <div class="charListArea">
       <table class="charListTable">
         <tr class="outterBorder lightRoundBorder charListNavBar fullBox">
-          <th class="statNav normalStatNav">No.</th>
+          <th class="statNav normalStatNav" @click="sortId" v-bind:class="{ active: idNavbar }">No.</th>
           <th class="statNav iconStatNav">아이콘</th>
-          <th class="statNav nameStatNav">이름</th>
-          <th class="statNav normalStatNav">위치</th>
-          <th class="statNav normalStatNav">함종</th>
-          <th class="statNav normalStatNav">진영</th>
-          <th class="statNav normalStatNav">내구</th>
-          <th class="statNav normalStatNav">장갑</th>
-          <th class="statNav normalStatNav">포격</th>
-          <th class="statNav normalStatNav">뇌장</th>
-          <th class="statNav normalStatNav">장전</th>
-          <th class="statNav normalStatNav">기동</th>
-          <th class="statNav normalStatNav">대공</th>
-          <th class="statNav normalStatNav">항공</th>
-          <th class="statNav normalStatNav">연비</th>
-          <th class="statNav normalStatNav">항속</th>
+          <th class="statNav nameStatNav" @click="sortName" v-bind:class="{ active: nameNavbar }">이름</th>
+          <th class="statNav normalStatNav" @click="sortPosition" v-bind:class="{ active: positionNavbar }">위치</th>
+          <th class="statNav normalStatNav" @click="sortType" v-bind:class="{ active: typeNavbar }">함종</th>
+          <th class="statNav normalStatNav" @click="sortCountry" v-bind:class="{ active: countryNavbar }">진영</th>
+          <th class="statNav normalStatNav" @click="sortHealth" v-bind:class="{ active: healthNavbar }">내구</th>
+          <th class="statNav normalStatNav" @click="sortArmor" v-bind:class="{ active: armorNavbar }">장갑</th>
+          <th class="statNav normalStatNav" @click="sortFirepower" v-bind:class="{ active: firepowerNavbar }">포격</th>
+          <th class="statNav normalStatNav" @click="sortTorpedo" v-bind:class="{ active: torpedoNavbar }">뇌장</th>
+          <th class="statNav normalStatNav" @click="sortReload" v-bind:class="{ active: reloadNavbar }">장전</th>
+          <th class="statNav normalStatNav" @click="sortAgility" v-bind:class="{ active: agilityNavbar }">기동</th>
+          <th class="statNav normalStatNav" @click="sortAntiair" v-bind:class="{ active: antiairNavbar }">대공</th>
+          <th class="statNav normalStatNav" @click="sortAirpower" v-bind:class="{ active: airpowerNavbar }">항공</th>
+          <th class="statNav normalStatNav" @click="sortEfficiency" v-bind:class="{ active: efficiencyNavbar }">연비</th>
+          <th class="statNav normalStatNav" @click="sortSpeed" v-bind:class="{ active: speedNavbar }">항속</th>
         </tr>
         <tr class="charList" v-for="character in filtered" :key="character.id">
           <td class="id">{{ character.id }}</td>
@@ -155,7 +155,23 @@ export default {
       dropAvailable: false,
       buildAvailable: false,
       limitedShip: false,
-      nonLimitedShip: false
+      nonLimitedShip: false,
+      sortOrder: "asc",
+      idNavbar:false,
+      nameNavbar:false,
+      positionNavbar:false,
+      typeNavbar:false,
+      countryNavbar:false,
+      healthNavbar:false,
+      armorNavbar:false,
+      firepowerNavbar:false,
+      torpedoNavbar:false,
+      reloadNavbar:false,
+      agilityNavbar:false,
+      antiairNavbar:false,
+      airpowerNavbar:false,
+      efficiencyNavbar:false,
+      speedNavbar:false,
     }
   },
   mounted() {
@@ -165,6 +181,40 @@ export default {
       self.types = result.data[1]
       self.rarities = result.data[2]
     })
+    if (sessionStorage.getItem(("charDBrarity")) != null) {
+      this.shipRarity = JSON.parse(sessionStorage.getItem("charDBrarity"))
+      this.shipCountry = JSON.parse(sessionStorage.getItem("charDBcountry"))
+      this.shipType = JSON.parse(sessionStorage.getItem("charDBshipType"))
+      this.remodelShip = JSON.parse(sessionStorage.getItem("charDBremodelShip"))
+      this.remodelAvailable = JSON.parse(sessionStorage.getItem("charDBremodelAvailable"))
+      this.dropAvailable = JSON.parse(sessionStorage.getItem("charDBdropAvailable"))
+      this.buildAvailable = JSON.parse(sessionStorage.getItem("charDBbuildAvailable"))
+      this.limitedShip = JSON.parse(sessionStorage.getItem("charDBlimitedShip"))
+      this.nonLimitedShip = JSON.parse(sessionStorage.getItem("charDBnonLimitedShip"))
+      this.shipName = JSON.parse(sessionStorage.getItem("charDBshipName"))
+    }
+    if (this.shipName == "" || this.shipName == null){
+      this.$http.post("/charactersfilter", {
+        rarity: this.shipRarity,
+        country: this.shipCountry,
+        shipType: this.shipType,
+        remodelShip: this.remodelShip,
+        remodelAvailable: this.remodelAvailable,
+        dropAvailable: this.dropAvailable,
+        buildAvailable: this.buildAvailable,
+        limitedShip: this.limitedShip,
+        nonLimitedShip: this.nonLimitedShip
+      }).then((result) => {
+        self.filtered = result.data
+      }).catch((error) => console.log(error))
+    }
+    else {
+      this.$http.post("/charactersfilterwithname", {
+        shipName: this.shipName
+      }).then((result) => {
+        self.filtered = result.data
+      }).catch((error) => console.log(error))
+    }
   },
   computed: {
     countrySelectAll: {
@@ -213,6 +263,16 @@ export default {
   methods: {
     checkBoxToggle() {
       let self = this
+      sessionStorage.setItem("charDBrarity", JSON.stringify(this.shipRarity))
+      sessionStorage.setItem("charDBcountry", JSON.stringify(this.shipCountry))
+      sessionStorage.setItem("charDBshipType", JSON.stringify(this.shipType))
+      sessionStorage.setItem("charDBremodelShip", JSON.stringify(this.remodelShip))
+      sessionStorage.setItem("charDBremodelAvailable", JSON.stringify(this.remodelAvailable))
+      sessionStorage.setItem("charDBdropAvailable", JSON.stringify(this.dropAvailable))
+      sessionStorage.setItem("charDBbuildAvailable", JSON.stringify(this.buildAvailable))
+      sessionStorage.setItem("charDBlimitedShip", JSON.stringify(this.limitedShip))
+      sessionStorage.setItem("charDBnonLimitedShip", JSON.stringify(this.nonLimitedShip))
+      sessionStorage.setItem("charDBshipName", "null")
       this.$http.post("/charactersfilter", {
         rarity: this.shipRarity,
         country: this.shipCountry,
@@ -234,6 +294,382 @@ export default {
       }).then((result) => {
         self.filtered = result.data
       }).catch((error) => console.log(error))
+      sessionStorage.setItem("charDBshipName", JSON.stringify(this.shipName))
+    },
+    sortId() {
+      this.idNavbar = true
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortName() {
+      this.idNavbar = false
+      this.nameNavbar = true
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.koreanname > b.koreanname) ? 1 : ((b.koreanname > a.koreanname) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.koreanname < b.koreanname) ? 1 : ((b.koreanname < a.koreanname) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortPosition() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = true
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.position > b.position) ? 1 : ((b.position > a.position) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.position < b.position) ? 1 : ((b.position < a.position) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortType() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = true
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.type > b.type) ? 1 : ((b.type > a.type) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.type < b.type) ? 1 : ((b.type < a.type) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortCountry() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = true
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.country < b.country) ? 1 : ((b.country < a.country) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortHealth() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = true
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.health > b.health) ? 1 : ((b.health > a.health) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.health < b.health) ? 1 : ((b.health < a.health) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortArmor() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = true
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.armor > b.armor) ? 1 : ((b.armor > a.armor) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.armor < b.armor) ? 1 : ((b.armor < a.armor) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortFirepower() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = true
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.firepower > b.firepower) ? 1 : ((b.firepower > a.firepower) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.firepower < b.firepower) ? 1 : ((b.firepower < a.firepower) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortTorpedo() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = true
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.torpedo > b.torpedo) ? 1 : ((b.torpedo > a.torpedo) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.torpedo < b.torpedo) ? 1 : ((b.torpedo < a.torpedo) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortReload() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = true
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.reload > b.reload) ? 1 : ((b.reload > a.reload) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.reload < b.reload) ? 1 : ((b.reload < a.reload) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortAgility() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = true
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.agility > b.agility) ? 1 : ((b.agility > a.agility) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.agility < b.agility) ? 1 : ((b.agility < a.agility) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortAntiair() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = true
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.antiair > b.antiair) ? 1 : ((b.antiair > a.antiair) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.antiair < b.antiair) ? 1 : ((b.antiair < a.antiair) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortAirpower() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = true
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.airpower > b.airpower) ? 1 : ((b.airpower > a.airpower) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.airpower < b.airpower) ? 1 : ((b.airpower < a.airpower) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortEfficiency() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = true
+      this.speedNavbar = false
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.efficiency > b.efficiency) ? 1 : ((b.efficiency > a.efficiency) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.efficiency < b.efficiency) ? 1 : ((b.efficiency < a.efficiency) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
+    },
+    sortSpeed() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = true
+      if (this.sortOrder == "asc") {
+        this.filtered.sort(function(a,b) {return (a.speed > b.speed) ? 1 : ((b.speed > a.speed) ? -1 : 0);} );
+        this.sortOrder = "desc"
+      }
+      else {
+        this.filtered.sort(function(a,b) {return (a.speed < b.speed) ? 1 : ((b.speed < a.speed) ? -1 : 0);} );
+        this.sortOrder = "asc"
+      }
     }
   }
 }
@@ -294,8 +730,11 @@ export default {
   }
   .statNav {
     letter-spacing: 2px;
-    font-size: 14px;
+    font-size: 90%;
     padding: 0.4em;
+  }
+  .normalStatNav:hover, .nameStatNav:hover {
+    background-color: #1e69eb;
   }
   .normalStatNav {
     /* width: 5.34%; */
@@ -321,5 +760,8 @@ export default {
     border: 2px solid #a6f0ff;
     border-top: none;
     border-right: none;
+  }
+  .active {
+    background-color: #1e69eb;
   }
 </style>
