@@ -53,20 +53,24 @@
     </div>
     <div class="resourceUsageArea rFloat">
       <div class="">
-        사용한 <img class="items" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/itemicon/cube.png" alt=""> : {{ this.usedCube }}
+        사용한 <img class="items" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/itemicon/cube.png" alt=""> : {{ usedCube }}
       </div>
       <div class="">
-        사용한 <img class="items" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/itemicon/gold.png" alt=""> : {{ this.usedGold }}
+        사용한 <img class="items" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/itemicon/gold.png" alt=""> : {{ usedGold }}
       </div>
     </div>
   </div>
   <div class="buildResultBox">
     <table class="buildResultTable">
+      <colgroup>
+        <col width="50%">
+        <col width="50%">
+      </colgroup>
       <tr>
-        <th>건조결과</th>
+        <th colspan="2">건조결과</th>
       </tr>
       <tr>
-        <td>
+        <td colspan="2">
           <div class="builtCharacterBox" v-for="character in builtCharacterList">
             <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
             <div class="characterName">
@@ -76,10 +80,13 @@
         </td>
       </tr>
       <tr v-if="buildCounter != 0" class="resetButtonContainer">
-        <th>누적건조결과<button type="button" class="resetButton" @click="resetDock">초기화</button></th>
+        <th colspan="2">누적건조결과<button type="button" class="resetButton" @click="resetDock">초기화</button></th>
+      </tr>
+      <tr v-if="buildCounter != 0">
+        <th class="sortButton" @click="sortRarity">레어도로 정렬</th><th class="sortButton" @click="sortStock">출현 횟수로 정렬</th>
       </tr>
       <tr>
-        <td>
+        <td colspan="2">
           <div class="dockCharacterBox lFloat" v-for="stockCharacter in dock">
             <router-link :to="'/characters/'+stockCharacter.id"><img :src="stockCharacter.iconimage" alt=""></router-link>
             <div class="characterName">
@@ -157,6 +164,42 @@ export default {
       this.usedCube = 0
       this.usedGold = 0
       this.buildCounter = 0
+    },
+    sortRarity() {
+      function raritystocksorting(obj1, obj2){
+        if(obj1.rarity > obj2.rarity)
+            return - 1;
+        if(obj2.rarity > obj1.rarity)
+            return 1;
+        if(obj1.stock > obj2.stock)
+            return -1;
+        if(obj2.stock > obj1.stock)
+            return 1;
+        if(obj1.id < obj2.id)
+            return -1;
+        if(obj2.id < obj1.id)
+            return 1;
+        return 0;
+      }
+      this.dock.sort(raritystocksorting)
+    },
+    sortStock() {
+      function stockraritysorting(obj1, obj2){
+        if(obj1.stock > obj2.stock)
+            return - 1;
+        if(obj2.stock > obj1.stock)
+            return 1;
+        if(obj1.rarity > obj2.rarity)
+            return -1;
+        if(obj2.rarity > obj1.rarity)
+            return 1;
+        if(obj1.id < obj2.id)
+            return -1;
+        if(obj2.id < obj1.id)
+            return 1;
+        return 0;
+      }
+      this.dock.sort(stockraritysorting)
     }
   }
 }
@@ -233,5 +276,8 @@ export default {
   }
   .characterName {
     font-size: 70%;
+  }
+  .sortButton:hover {
+    background-color: rgb(57, 148, 255);
   }
 </style>

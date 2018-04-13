@@ -48,13 +48,37 @@
              <th>레어도</th><th>함종</th><th>이름</th>
            </tr>
            <tr>
-             <th rowspan="2">SSR</th><th>전함</th><td>프린스 오브 웨일즈</td>
+             <th rowspan="2">SSR</th><th>전함</th>
+             <td>
+               <div class="characterArea">
+                 <router-link to="/characters/135"><img src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/characterIconImage/135.png" alt=""></router-link>
+                 <div class="characterName">
+                   <router-link to="/characters/135">프린스 오브 웨일즈</router-link>
+                 </div>
+               </div>
+             </td>
            </tr>
            <tr>
-             <th>중순</th><td>아타고</td>
+             <th>중순</th>
+             <td>
+               <div class="characterArea">
+                 <router-link to="/characters/201"><img src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/characterIconImage/201.png" alt=""></router-link>
+                 <div class="characterName">
+                   <router-link to="/characters/201">아타고</router-link>
+                 </div>
+               </div>
+             </td>
            </tr>
            <tr>
-             <th>SR</th><th>구축함</th><td>뱀파이어</td>
+             <th>SR</th><th>구축함</th>
+             <td>
+               <div class="characterArea">
+                 <router-link to="/characters/103"><img src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/characterIconImage/103.png" alt=""></router-link>
+                 <div class="characterName">
+                   <router-link to="/characters/103">뱀파이어</router-link>
+                 </div>
+               </div>
+             </td>
            </tr>
          </table>
       </div>
@@ -183,7 +207,7 @@
              </td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/15.png" alt=""></td><td colspan="2">102mm 3연장포(부포) T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/24.png" alt=""></td><td colspan="2">120mm 연장포 T3</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/48.png" alt=""></td><td colspan="2">140mm 연장포 T3</td>
@@ -246,7 +270,7 @@
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/69.png" alt=""></td><td colspan="2">152mm 연장포B T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/81.png" alt=""></td><td colspan="2">203mm 연장포A T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/84.png" alt=""></td><td colspan="2">203mm 연장포B T3</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/107.png" alt=""></td><td colspan="2">356mm 4연장포 T2</td>
@@ -274,7 +298,7 @@ export default {
       showDropDown3_3: true,
       sp1_characters_num: [],
       sp2_characters_num: [103,233,26,27,15,16,17,88,89,90,29,30,45,39,128,58,59,52,53,71,72,75,140],
-      sp3_characters_num: [135,103,94,133,144,34,35,122,121,128,6,8,9,5,240,239,238,104,39,52,53,71,72,75,140],
+      sp3_characters_num: [135,103,94,144,34,35,122,121,128,6,8,9,5,240,239,238,104,39,52,53,71,72,75,140],
       sp1_characters_info: [],
       sp2_characters_info: [],
       sp3_characters_info: []
@@ -406,6 +430,6 @@ table {
   width: 50px;
 }
 .characterName {
-  font-size: 70%;
+  font-size: 80%;
 }
 </style>

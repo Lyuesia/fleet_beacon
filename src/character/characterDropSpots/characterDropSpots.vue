@@ -869,6 +869,6 @@ img {
 .characterIconArea {
   padding: 0.5em;
   text-align: center;
-  font-size: 70%;
+  font-size: 80%;
 }
 </style>

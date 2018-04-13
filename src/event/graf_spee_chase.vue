@@ -42,13 +42,21 @@
              <col width="70%">
            </colgroup>
            <tr>
-             <th>베이스</th><td colspan="2"></td>
+             <th>베이스</th><td colspan="2">대형건조</td>
            </tr>
            <tr>
              <th>레어도</th><th>함종</th><th>이름</th>
            </tr>
            <tr>
-             <th>SR</th><th>중순</th><td>그라프 쉬페</td>
+             <th>SR</th><th>중순</th>
+             <td>
+               <div class="characterArea">
+                 <router-link to="/characters/246"><img src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/characterIconImage/246.png" alt=""></router-link>
+                 <div class="characterName">
+                   <router-link to="/characters/246">어드미럴 그라프쉬페</router-link>
+                 </div>
+               </div>
+             </td>
            </tr>
          </table>
       </div>
@@ -120,7 +128,7 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="" alt=""></td>
+             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/graf_spee_chase/sp1.png" alt=""></td>
            </tr>
            <tr>
              <th>최저 요구 레벨</th><td colspan="3"></td>
@@ -177,7 +185,7 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="" alt=""></td>
+             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/graf_spee_chase/sp2.png" alt=""></td>
            </tr>
            <tr>
              <th>최저 요구 레벨</th><td colspan="3"></td>
@@ -200,16 +208,16 @@
              </td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/93.png" alt=""></td><td colspan="2">203mm SKC 연장포 T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/168.png" alt=""></td><td colspan="2">QF 2파운드 8연장 폼폼포 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/165.png" alt=""></td><td colspan="2">QF 2파운드 4연장 폼폼포 T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/81.png" alt=""></td><td colspan="2">203mm 연장포A T3</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/167.png" alt=""></td><td colspan="2">QF 2파운드 8연장 폼폼포 T2</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/390.png" alt=""></td><td colspan="2">연료 필터 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/164.png" alt=""></td><td colspan="2">QF 2파운드 4연장 폼폼포 T2</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/192.png" alt=""></td><td colspan="2">533mm 3연장어뢰 T3</td>
@@ -234,7 +242,7 @@
              <th colspan="4">맵</th>
            </tr>
            <tr>
-             <td colspan="4"><img class="map" src="" alt=""></td>
+             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/graf_spee_chase/sp3.png" alt=""></td>
            </tr>
            <tr>
              <th>최저 요구 레벨</th><td colspan="3"></td>
@@ -257,16 +265,16 @@
              </td>
            </tr>
            <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/183.png" alt=""></td><td colspan="2">105mm SKC 연장고각포 T3</td>
+             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/204.png" alt=""></td><td colspan="2">533mm 4연장자성어뢰 T3</td>
            </tr>
            <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/204.png" alt=""></td><td colspan="2">533mm 4연장자성어뢰 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/54.png" alt=""></td><td colspan="2">150mm SKC/28 3연장포 T3</td>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/51.png" alt=""></td><td colspan="2">150mm SKC/28 단장포 T3</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/96.png" alt=""></td><td colspan="2">283mm SKC28 3연장포 T3</td>
+           </tr>
+           <tr>
+             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/182.png" alt=""></td><td colspan="2">105mm SKC 연장고각포 T2</td>
            </tr>
            <tr>
              <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/203.png" alt=""></td><td colspan="2">533mm 4연장자성어뢰 T2</td>
@@ -289,9 +297,9 @@ export default {
       showDropDown3_1: true,
       showDropDown3_2: true,
       showDropDown3_3: true,
-      sp1_characters_num: [],
-      sp2_characters_num: [],
-      sp3_characters_num: [],
+      sp1_characters_num: [13,233,7,34,35,81,128,15,16,17,86,87,29,30,104,238,239,240,71,72,75,140],
+      sp2_characters_num: [33,125,7,105,106,116,117,15,16,17,86,87,29,30,104,238,239,240,71,72,75,140],
+      sp3_characters_num: [119,126,44,120,121,122,123,15,16,17,86,87,29,30,104,238,239,240,71,72,75,140],
       sp1_characters_info: [],
       sp2_characters_info: [],
       sp3_characters_info: []
@@ -428,6 +436,6 @@ table {
   width: 50px;
 }
 .characterName {
-  font-size: 70%;
+  font-size: 80%;
 }
 </style>

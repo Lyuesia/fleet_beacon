@@ -69,6 +69,30 @@
         </table>
       </div>
     </div>
+    <div class="limitBreakBox">
+      <table class="limitBreakTable fullBox">
+        <colgroup>
+          <col width="10.33333%">
+          <col width="23%">
+          <col width="10.33333%">
+          <col width="23%">
+          <col width="10.33333%">
+          <col width="23%">
+        </colgroup>
+        <tr>
+          <th class="charStatHead" colspan="6">레벨 돌파 스텟 (110레벨)</th>
+        </tr>
+        <tr>
+          <th class="charStatHead">내구</th><td>{{ charData.limit110health }}</td><th class="charStatHead">장갑</th><td>{{ charData.armor }}</td><th class="charStatHead">장전</th><td>{{ charData.limit110reload }}</td>
+        </tr>
+        <tr>
+          <th class="charStatHead">포격</th><td>{{ charData.limit110firepower }}</td><th class="charStatHead">뇌장</th><td>{{ charData.limit110torpedo }}</td><th class="charStatHead">기동</th><td>{{ charData.limit110agility }}</td>
+        </tr>
+        <tr>
+          <th class="charStatHead">대공</th><td>{{ charData.limit110antiair }}</td><th class="charStatHead">항공</th><td>{{ charData.limit110airpower }}</td><th class="charStatHead">연비</th><td>{{ charData.efficiency}}</td>
+        </tr>
+      </table>
+    </div>
     <div class="availabilityBox">
       <table class="fullBox">
         <colgroup>
@@ -284,6 +308,30 @@
             </tr>
           </table>
         </div>
+      </div>
+      <div class="limitBreakBox">
+        <table class="limitBreakTable fullBox">
+          <colgroup>
+            <col width="10.33333%">
+            <col width="23%">
+            <col width="10.33333%">
+            <col width="23%">
+            <col width="10.33333%">
+            <col width="23%">
+          </colgroup>
+          <tr>
+            <th class="charStatHead" colspan="6">레벨 돌파 스텟 (110레벨)</th>
+          </tr>
+          <tr>
+            <th class="charStatHead">내구</th><td>{{ remodelCharData.limit110health }}</td><th class="charStatHead">장갑</th><td>{{ remodelCharData.armor }}</td><th class="charStatHead">장전</th><td>{{ remodelCharData.limit110reload }}</td>
+          </tr>
+          <tr>
+            <th class="charStatHead">포격</th><td>{{ remodelCharData.limit110firepower }}</td><th class="charStatHead">뇌장</th><td>{{ remodelCharData.limit110torpedo }}</td><th class="charStatHead">기동</th><td>{{ remodelCharData.limit110agility }}</td>
+          </tr>
+          <tr>
+            <th class="charStatHead">대공</th><td>{{ remodelCharData.limit110antiair }}</td><th class="charStatHead">항공</th><td>{{ remodelCharData.limit110airpower }}</td><th class="charStatHead">연비</th><td>{{ remodelCharData.efficiency}}</td>
+          </tr>
+        </table>
       </div>
       <div class="availabilityBox">
         <table class="fullBox">
@@ -537,5 +585,11 @@ export default {
   }
   .remodelInfoButtonArea {
     text-align: center;
+  }
+  .limitBreakBox {
+    margin-bottom: 2em;
+  }
+  .limitBreakTable {
+    font-size: 90%
   }
 </style>
