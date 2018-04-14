@@ -47,7 +47,7 @@
       <a class="top-menu-link useable" @click="topMenu6=!topMenu6" v-bind:class="{ active: topMenu6 }">게임플레이 팁</a>
       <div class="dropdown-menu" v-if="topMenu6">
         <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/charactersSelectionTips">함선 추천</router-link>
-        <!-- <router-link class="sub-menu" to="/equipSelectionTips">장비 추천</router-link> -->
+        <router-link class="sub-menu largedropdown" v-on:click.native="closeAllDropdown" to="/characterExperienceCalculator">숙소 경험치 계산기</router-link>
         <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/characterBuildSimulator">건조 시뮬레이터</router-link>
       </div>
     </div>
@@ -134,6 +134,9 @@ export default {
     background-color: #1e69eb;
   }
   .eventDropdown {
+    font-size: 90%;
+  }
+  .largedropdown{
     font-size: 90%;
   }
 </style>
