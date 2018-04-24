@@ -36,12 +36,19 @@
       </div>
     </div>
     <div class="top-menu">
-      <a class="top-menu-link" @click="topMenu5=!topMenu5">장비 정보</a>
+      <a  class="top-menu-link useable" @click="topMenu5=!topMenu5" v-bind:class="{ active: topMenu5 }">장비 정보</a>
+      <div class="dropdown-menu" v-if="topMenu5">
+        <router-link v-on:click.native="closeAllDropdown" to="/equipGunDB">함포 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/equipPlaneDB">함재기 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/equipTorpedoDB">어뢰 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/equipAntiairDB">대공포 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/equipSupportDB">보조장비 DB</router-link>
       <!-- <div class="dropdown-menu">
         <a class="sub-menu" href="#">장비 DB</a>
         <a class="sub-menu" href="#">장비 스킨 일람</a>
         <a class="sub-menu" href="#">해역별 드롭 장비</a>
       </div> -->
+      </div>
     </div>
     <div class="top-menu">
       <a class="top-menu-link useable" @click="topMenu6=!topMenu6" v-bind:class="{ active: topMenu6 }">게임플레이 팁</a>

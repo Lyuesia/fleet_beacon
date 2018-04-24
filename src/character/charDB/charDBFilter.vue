@@ -262,6 +262,21 @@ export default {
   },
   methods: {
     checkBoxToggle() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
       let self = this
       sessionStorage.setItem("charDBrarity", JSON.stringify(this.shipRarity))
       sessionStorage.setItem("charDBcountry", JSON.stringify(this.shipCountry))
@@ -288,6 +303,21 @@ export default {
       }).catch((error) => console.log(error))
     },
     nameSearch() {
+      this.idNavbar = false
+      this.nameNavbar = false
+      this.positionNavbar = false
+      this.typeNavbar = false
+      this.countryNavbar = false
+      this.healthNavbar = false
+      this.armorNavbar = false
+      this.firepowerNavbar = false
+      this.torpedoNavbar = false
+      this.reloadNavbar = false
+      this.agilityNavbar = false
+      this.antiairNavbar = false
+      this.airpowerNavbar = false
+      this.efficiencyNavbar = false
+      this.speedNavbar = false
       let self = this
       this.$http.post("/charactersfilterwithname", {
         shipName: this.shipName

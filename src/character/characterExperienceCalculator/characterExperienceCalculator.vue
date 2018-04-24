@@ -8,8 +8,8 @@
   <div class="ControllerBox fullBox">
     <table class="ControllerTable">
       <colgroup>
-        <col width="30%">
-        <col width="70%">
+        <col width="50%">
+        <col width="50%">
       </colgroup>
       <tr>
         <th class="tableHeader">지휘관 레벨</th>
@@ -22,7 +22,7 @@
       <tr>
         <th class="tableHeader">캐릭터 현재 레벨</th>
         <td>
-          <div class="lFloat tableinput">
+          <div class="tableinput">
             <input type="number" v-model.number="currentlevel">
           </div>
         </td>
@@ -30,7 +30,7 @@
       <tr>
         <th class="tableHeader">캐릭터 현재 경험치</th>
         <td>
-          <div class="lFloat tableinput">
+          <div class="tableinput">
             <input type="number" v-model.number="currentexp">
           </div>
         </td>
@@ -38,7 +38,7 @@
       <tr>
         <th class="tableHeader">캐릭터 목표 레벨</th>
         <td>
-          <div class="lFloat tableinput">
+          <div class="tableinput">
             <input type="number" v-model.number="expectlevel">
           </div>
         </td>
@@ -46,7 +46,7 @@
       <tr>
         <th class="tableHeader">숙소에 배치된 함정 수</th>
         <td>
-          <div class="lFloat tableinput">
+          <div class="tableinput">
             <select v-model.number="shipsinroom">
               <option>1</option>
               <option>2</option>
@@ -60,7 +60,7 @@
       <tr>
         <th class="tableHeader">숙소안락도</th>
         <td>
-          <div class="lFloat tableinput">
+          <div class="tableinput">
             <input type="number" v-model.number="comfortpoint">
           </div>
         </td>
@@ -235,7 +235,7 @@ export default {
     padding: 0.3em;
   }
   .ControllerTable {
-    width: 70%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -248,7 +248,7 @@ export default {
     padding-left: 0.3em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    width: 30%
+    width: 100%
   }
   .calculationButton {
     width: 5em;
