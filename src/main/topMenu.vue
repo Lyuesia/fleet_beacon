@@ -6,8 +6,11 @@
     <div class="top-menu">
       <a class="top-menu-link useable" @click="topMenu2=!topMenu2" v-bind:class="{ active: topMenu2 }">이벤트 정보</a>
       <div class="dropdown-menu eventDropdown" v-if="topMenu2">
-        <router-link v-on:click.native="closeAllDropdown" to="/koreanevent">노력, 희망과 계획</router-link>
-        <router-link v-on:click.native="closeAllDropdown" to="/japaneseevent">그라프 쉬페 추격전</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/questevent/2">가르쳐줘! Z23 선생님! (일)</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/questevent/3">가르쳐줘! Z23 선생님! (한)</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/pointevent/1">만두대작전</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/questevent/1">아카시의 부탁</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/eventlist">지나간 이벤트 목록</router-link>
         <!-- <a class="sub-menu" href="#">이벤트 임무</a>
         <a class="sub-menu" href="#">이벤트 해역 공략</a>
         <a class="sub-menu" href="#">이벤트 BGM</a>
@@ -43,6 +46,7 @@
         <router-link v-on:click.native="closeAllDropdown" to="/equipTorpedoDB">어뢰 DB</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/equipAntiairDB">대공포 DB</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/equipSupportDB">보조장비 DB</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/equipDropSpots">해역별 장비드랍</router-link>
       <!-- <div class="dropdown-menu">
         <a class="sub-menu" href="#">장비 DB</a>
         <a class="sub-menu" href="#">장비 스킨 일람</a>
@@ -53,7 +57,6 @@
     <div class="top-menu">
       <a class="top-menu-link useable" @click="topMenu6=!topMenu6" v-bind:class="{ active: topMenu6 }">게임플레이 팁</a>
       <div class="dropdown-menu" v-if="topMenu6">
-        <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/charactersSelectionTips">함선 추천</router-link>
         <router-link class="sub-menu largedropdown" v-on:click.native="closeAllDropdown" to="/characterExperienceCalculator">숙소 경험치 계산기</router-link>
         <router-link class="sub-menu" v-on:click.native="closeAllDropdown" to="/characterBuildSimulator">건조 시뮬레이터</router-link>
       </div>

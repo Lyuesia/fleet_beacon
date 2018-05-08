@@ -1,13 +1,23 @@
-import koreancurrentevent from "../event/effort_hope_and_plan.vue"
-import japanesecurrentevent from "../event/graf_spee_chase.vue"
+import minievent from "../event/mini_event.vue"
+import eventlist from "../event/eventlist.vue"
+import pointevent from "../event/point_event.vue"
+import questevent from "../event/quest_event.vue"
 
 export default [
   {
-    path: '/koreanevent',
-    component: koreancurrentevent
+    path: '/minievent/:eventIndex',
+    component: minievent
   },
   {
-    path: "/japaneseevent",
-    component: japanesecurrentevent
+    path: "/eventlist",
+    component: eventlist
+  },
+  {
+    path: "/pointevent/:eventIndex",
+    component: pointevent
+  },
+  {
+    path: "/questevent/:eventIndex",
+    component: questevent
   }
 ]

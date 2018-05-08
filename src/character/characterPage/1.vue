@@ -112,7 +112,7 @@
           <th class="charStatHead">한정</th><td>{{ charData.limited }}</td><th class="charStatHead">드랍</th><td>{{ charData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ charData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ charData.etcavailability }}</td>
         </tr>
         <tr v-if="charData.limited == 'X' && charData.dropspot != null">
-          <th class="charStatHead">드랍장소</th><td colspan="7">{{ charData.dropspot }}</td>
+          <th class="charStatHead">드랍장소</th><td colspan="7"><div class="lFloat" v-for="spots in dropSpot">{{ spots.regionmainnumber }}-{{ spots.regionnumber}},&nbsp;</div></td>
         </tr>
       </table>
     </div>
@@ -352,7 +352,7 @@
             <th class="charStatHead">한정</th><td>{{ remodelCharData.limited }}</td><th class="charStatHead">드랍</th><td>{{ remodelCharData.dropavailability }}</td><th class="charStatHead">건조</th><td>{{ remodelCharData.buildtime }}</td><th class="charStatHead">그 외 경로</th><td>{{ remodelCharData.etcavailability }}</td>
           </tr>
           <tr v-if="remodelCharData.limited == 'X' && remodelCharData.dropspot != null">
-            <th class="charStatHead">드랍장소</th><td colspan="7">{{ remodelCharData.dropspot }}</td>
+            <th class="charStatHead">드랍장소</th><td colspan="7"><div class="lFloat" v-for="spots in dropSpot">{{ spots.regionmainnumber }}-{{ spots.regionnumber}},&nbsp;</div></td>
           </tr>
         </table>
       </div>
@@ -422,6 +422,7 @@ export default {
       id: 0,
       remodelId: 0,
       charData: {},
+      dropSpot:{},
       remodelCharData: {},
       remodelDetails: false
     }
@@ -437,13 +438,14 @@ export default {
         this.$http.post("/character", {
           id: this.id
         }).then(function(result) {
-          self.charData = result.data[0]
+          self.charData = result.data[0][0]
+          self.dropSpot = result.data[1]
           self.remodelId = parseInt(self.id) + 3000
           if (self.charData.remodel !== 0) {
             self.$http.post("/character", {
               id: self.remodelId
             }). then(function (response) {
-              self.remodelCharData = response.data[0]
+              self.remodelCharData = response.data[0][0]
               if (self.remodelCharData.time === null) {
                 self.remodelCharData.buildtime = "건조불가"
               }

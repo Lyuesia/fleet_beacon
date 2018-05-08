@@ -2,7 +2,7 @@
   <div class="wikiArea fullBox">
     <div class="outterBorder roundBorder">
       <div class="innerBorder roundBorder title">
-       ㆎ 해역별 함선드랍
+       ㆎ 해역별 장비드랍
       </div>
     </div>
     <div class="indexTableArea">
@@ -36,13 +36,13 @@
               <col width="10%">
               <col width="90%">
             </colgroup>
-            <tr v-for="subRegionInfo in characterList[regionNumber]">
+            <tr v-for="subRegionInfo in equipList[regionNumber]">
               <th>{{ regionNumber }}-{{ subRegionInfo[0].regionnumber }}</th>
               <td>
-                <div class="lFloat characterIconArea" v-for="character in subRegionInfo">
-                  <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
-                  <div class="characterName">
-                    <router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link>
+                <div class="lFloat equipIconArea" v-for="equipment in subRegionInfo">
+                  <img class="equipIcon lFloat" :src="equipment.equipiconimage" alt="">
+                  <div class="lFloat equipName">
+                    {{ equipment.equipkoreanname }} {{ equipment.equiptier }}
                   </div>
                 </div>
               </td>
@@ -61,15 +61,15 @@
 export default {
   data() {
     return {
-      characterList: [],
+      equipList: [],
       regionList:[]
     }
   },
   mounted() {
     let self = this
-    this.$http.get("/characterdropspotlist").then(function(result) {
-      self.characterList = result.data
-      self.regionList = Object.keys(self.characterList)
+    this.$http.get("/equipdropspotlist").then(function(result) {
+      self.equipList = result.data
+      self.regionList = Object.keys(self.equipList)
     }).catch((error) => console.log(error))
   }
 }
@@ -142,9 +142,17 @@ img {
 .pageFooter {
   margin-bottom: 7em;
 }
-.characterIconArea {
+.equipIconArea {
+  width: 45%;
   padding: 0.5em;
-  text-align: center;
-  font-size: 80%;
+  font-size: 90%;
+  text-align: left;
+  vertical-align: middle;
+}
+.equipIcon {
+  padding: 0.3em;
+}
+.equipName {
+  line-height: 50px;
 }
 </style>

@@ -6,6 +6,7 @@ import characterRemodelInfo from "../character/characterRemodel/characterRemodel
 import characterExperienceCalculator from "../character/characterExperienceCalculator/characterExperienceCalculator.vue"
 // import charpagetest from "../character/characterPage/test.vue"
 // import charDBTest from "../character/charDB/charDBFilterTest.vue"
+// import characterDropSpotsTest from "../character/characterDropSpots/characterDropSpotsTest.vue"
 
 export default [
   {
@@ -31,7 +32,7 @@ export default [
   {
     path: "/characterExperienceCalculator",
     component: characterExperienceCalculator
-  }
+  },
   // {
   //   path: "/characterstest/:id",
   //   component: charpagetest
@@ -39,5 +40,9 @@ export default [
   // {
   //   path: "/charDBTest",
   //   component: charDBTest
+  // }
+  // {
+  //   path: "/characterDropSpotsTest",
+  //   component: characterDropSpotsTest
   // }
 ]

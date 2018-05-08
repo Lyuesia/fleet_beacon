@@ -124,4 +124,7 @@ export default {
     text-align: center;
     margin: 1em;
   }
+  .updatefooter {
+    margin-bottom: 7em;
+  }
 </style>

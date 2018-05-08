@@ -2,7 +2,7 @@
 <div class="noticePageArea">
   <div class="fullBox outterBorder roundBorder noticePageTitle">
     <div class="innerBorder roundBorder title">
-      ㆎ공지사항
+      ㆎ 공지사항
     </div>
   </div>
   <div class="noticeContentBox fullBox outterBorder">

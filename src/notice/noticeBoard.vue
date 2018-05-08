@@ -2,7 +2,7 @@
   <div class="noticeBoardArea">
     <div class="fullBox outterBorder roundBorder noticeBoardTitle">
       <div class="innerBorder roundBorder title">
-        ㆎ공지사항
+        ㆎ 공지사항
       </div>
     </div>
     <div class="outterBorder">
@@ -123,5 +123,8 @@ export default {
   .loadMoreButton {
     text-align: center;
     margin: 1em;
+  }
+  .noticefooter {
+    margin-bottom: 7em;
   }
 </style>
