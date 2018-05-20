@@ -2,7 +2,7 @@
   <div class="wikiArea fullBox">
     <div class="outterBorder roundBorder">
       <div class="innerBorder roundBorder title">
-       ㆎ {{ eventGeneral.koreanname }}
+       ㆎ {{ eventGeneral.bigeventkoreanname }}
       </div>
     </div>
     <div class="indexTableArea">
@@ -17,35 +17,48 @@
         <tr class="indexTableContent">
           <td>
             <ol>
-              <li><a href="#tab1">ㆎ 이벤트 캐릭터 정보</a></li>
-              <li><a href="#tab2">ㆎ 이벤트 한정임무</a></li>
-              <li><a href="#tab3">ㆎ 이벤트 스테이지</a></li>
-              <li><a href="#tab3.1">&nbsp;3.1. SP1</a></li>
-              <li><a href="#tab3.2">&nbsp;3.2. SP2</a></li>
-              <li><a href="#tab3.3">&nbsp;3.3. SP3</a></li>
+              <li><a href="#eventinfo">ㆎ 이벤트 개요</a></li>
+              <li><a href="#eventcharacter">ㆎ 이벤트 캐릭터 정보</a></li>
+              <li><a href="#eventexchange">ㆎ 이벤트 교환 목록</a></li>
+              <li><a href="#eventquest">ㆎ 이벤트 한정임무</a></li>
+              <li><a href="#eventstagegeneral">ㆎ 이벤트 해역 개요</a></li>
+              <li><a href="#eventstage">ㆎ 이벤트 해역 정보</a></li>
+              <li v-for="(subRegion,regionKey,index) in eventRegionInfo">&nbsp;&nbsp;&nbsp;&nbsp;<a :href="'#region'+regionKey">ㆎ {{ regionKey }}해역</a></li>
             </ol>
           </td>
         </tr>
       </table>
     </div>
     <div class="wikiContentArea">
-      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown1=!showDropDown1">
-        <div class="innerBorder roundBorder title" id="tab1">
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="infoDropDown=!infoDropDown" v-if="eventGeneral.bigeventdescription != null">
+        <div class="innerBorder roundBorder title" id="eventinfo">
+          ㆎ 이벤트 개요 ▼
+        </div>
+      </div>
+      <div class="fullBox wikiSubContentArea" v-if="infoDropDown">
+        <div class="eventInfoArea" v-html="eventGeneral.bigeventdescription">
+
+        </div>
+      </div>
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="characterDropDown=!characterDropDown">
+        <div class="innerBorder roundBorder title" id="eventcharacter">
           ㆎ 이벤트 캐릭터 정보 ▼
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown1">
-         <table class="eventBuildTable">
+      <div class="fullBox wikiSubContentArea" v-if="characterDropDown">
+         <table class="eventBuildTable fullBox">
            <colgroup>
              <col width="10%">
              <col width="10%">
              <col width="10%">
              <col width="10%">
+             <col width="10%">
+             <col width="10%">
              <col width="15%">
-             <col width="45%">
+             <col width="25%">
            </colgroup>
            <tr>
-             <th>함종</th><th>아이콘</th><th>이름</th><th>레어도</th><th>이벤트 드랍장소</th><th>비고</th>
+             <th>함종</th><th>아이콘</th><th>이름</th><th>레어도</th><th>한정건조</th><th>교환</th><th>이벤트 드랍장소</th><th>비고</th>
            </tr>
            <tr v-for="character in eventCharacterList">
              <td>{{ character.type }}</td>
@@ -64,37 +77,40 @@
                </div>
              </td>
              <td>{{ character.rarity }}</td>
+             <td>{{ character.eventbuild }}</td>
+             <td>{{ character.itemexchange }}</td>
              <td>{{ character.eventdropspot }}</td>
              <td>{{ character.extraavailable }}</td>
            </tr>
          </table>
       </div>
-      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown2=!showDropDown2">
-        <div class="innerBorder roundBorder title" id="tab2">
-          ㆎ 이벤트 아이템, 해역전투 표 ▼
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="exchangeDropDown=!exchangeDropDown">
+        <div class="innerBorder roundBorder title" id="eventexchange">
+          ㆎ 이벤트 교환 목록 ▼
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown2">
-        <table class="eventQuestTable">
+      <div class="fullBox wikiSubContentArea" v-if="exchangeDropDown">
+        <table class="eventExchangeTable">
           <colgroup>
-            <col width="30%">
-            <col width="35%">
-            <col width="35%">
+            <col width="55%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
           </colgroup>
           <tr>
-            <th>스테이지</th><th>아이템 획득 수</th><th>전투횟수</th>
+            <th>품목</th><th>필요 {{ eventGeneral.bigeventitemname }}</th><th>교환 가능 횟수</th><th>분류</th>
           </tr>
-          <tr v-for="region in eventStageTable">
-            <td>{{ region.regionname }}{{ region.regionnumber }}</td><td>{{ region.regionitemobtain }}</td><td>{{ region.regionbattlenumber }}</td>
+          <tr v-for="exchangeitem in eventExchangeList">
+            <td>{{ exchangeitem.itemname }}</td><td>{{ exchangeitem.itemprice }}</td><td>{{ exchangeitem.numberavailable }}</td><td>{{ exchangeitem.exchangeitemtype }}</td>
           </tr>
         </table>
       </div>
-      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown2=!showDropDown2">
-        <div class="innerBorder roundBorder title" id="tab2">
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="questDropDown=!questDropDown">
+        <div class="innerBorder roundBorder title" id="eventquest">
           ㆎ 이벤트 한정임무 ▼
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown2">
+      <div class="fullBox wikiSubContentArea" v-if="questDropDown">
         <table class="eventQuestTable">
           <colgroup>
             <col width="60%">
@@ -103,171 +119,107 @@
           <tr>
             <th>임무내용</th><th>보상</th>
           </tr>
-          <tr v-for="quest in eventQuestTable">
+          <tr v-for="quest in eventQuestList">
             <td>{{ quest.questcontent }}</td><td>{{ quest.questreward }}</td>
           </tr>
         </table>
       </div>
-      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown3=!showDropDown3">
-        <div class="innerBorder roundBorder title" id="tab3">
-          ㆎ A해역 ▼
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="stageGeneralDropDown=!stageGeneralDropDown">
+        <div class="innerBorder roundBorder title" id="eventstagegeneral">
+          ㆎ 이벤트 해역 개요 ▼
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown3 && showDropDown3_1">
-         <table class="fullBox eventStageTable" v-for="region in eventRegionA">
-           <colgroup>
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-           </colgroup>
-           <tr>
-             <th colspan="4">맵</th>
-           </tr>
-           <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp1.jpg" alt=""></td>
-           </tr>
-           <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
-           </tr>
-           <tr>
-             <th>적 레벨</th><td>일반: 28<br>보스: 30</td><th>보스전까지 전투횟수</th><td>2회 + 보스</td>
-           </tr>
-           <tr>
-             <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T2, 골드</td>
-           </tr>
-           <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/322.png" alt=""></td><td colspan="2">BTD-1 디스트로이어 T2</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/329.png" alt=""></td><td colspan="2">풀머 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/333.png" alt=""></td><td colspan="2">99식 함상폭격기 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/349.png" alt=""></td><td colspan="2">소드피시 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/359.png" alt=""></td><td colspan="2">텐잔 T3</td>
-           </tr>
-         </table>
+      <div class="fullBox wikiSubContentArea" v-if="stageGeneralDropDown">
+        <table class="eventQuestTable">
+          <colgroup>
+            <col width="30%">
+            <col width="35%">
+            <col width="35%">
+          </colgroup>
+          <tr>
+            <th>스테이지</th><th>{{ eventGeneral.bigeventitemname }} 획득 수</th><th>전투횟수</th>
+          </tr>
+          <tr v-for="region in eventStageGeneral">
+            <td>{{ region.regionname }}{{ region.regionnumber }}</td><td>{{ region.regioneventitemobtain }}</td><td>{{ region.regionbattlenumber }} + 보스</td>
+          </tr>
+        </table>
       </div>
-
-      <div v-if="showDropDown3" class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown3_2=!showDropDown3_2">
-        <div class="innerBorder roundBorder title" id="tab3.2">
-          3.2. SP2 ▼
+      <div class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="stageDropDown=!stageDropDown">
+        <div class="innerBorder roundBorder title" id="eventstage">
+          ㆎ 이벤트 해역 정보 ▼
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown3 && showDropDown3_2">
-         <table class="fullBox eventStageTable">
-           <colgroup>
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-           </colgroup>
-           <tr>
-             <th colspan="4">맵</th>
-           </tr>
-           <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp2.jpg" alt=""></td>
-           </tr>
-           <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
-           </tr>
-           <tr>
-             <th>적 레벨</th><td>일반: 32<br>보스: 35</td><th>보스전까지 전투횟수</th><td>4회 + 보스</td>
-           </tr>
-           <tr>
-             <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T3, 골드</td>
-           </tr>
-           <tr>
-             <th>드롭 캐릭터</th>
-             <td colspan="3">
-               <div class="lFloat characterArea" v-for="character in sp2_characters_info">
-                 <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
-                 <div class="characterName">
-                   <router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link>
-                 </div>
-               </div>
-             </td>
-           </tr>
-           <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/24.png" alt=""></td><td colspan="2">120mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/48.png" alt=""></td><td colspan="2">140mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/114.png" alt=""></td><td colspan="2">381mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/126.png" alt=""></td><td colspan="2">410mm 연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/165.png" alt=""></td><td colspan="2">QF 2파운드 4연장 폼폼포 T3</td>
-           </tr>
-         </table>
-      </div>
-
-      <div v-if="showDropDown3" class="outterBorder roundBorder wikiSubHeader" v-on:click.prevent="showDropDown3_3=!showDropDown3_3">
-        <div class="innerBorder roundBorder title" id="tab3.3">
-          3.3. SP3 ▼
+      <div class="" v-for="(subRegion,regionKey,index) in eventRegionInfo" v-if="stageDropDown">
+        <div class="outterBorder roundBorder wikiSubHeader">
+          <div class="innerBorder roundBorder title" :id="'region'+regionKey">
+            ㆎ {{ regionKey }}해역
+          </div>
+        </div>
+        <div class="" v-for="region in subRegion">
+          <div class="outterBorder roundBorder wikiSubHeader">
+            <div class="innerBorder roundBorder title">
+              ㆎ {{ region.regionname }}{{ region.regionnumber }}
+            </div>
+          </div>
+          <div class="fullBox wikiSubContentArea">
+             <table class="fullBox eventStageTable">
+               <colgroup>
+                 <col width="25%">
+                 <col width="25%">
+                 <col width="25%">
+                 <col width="25%">
+               </colgroup>
+               <tr>
+                 <th colspan="4">맵</th>
+               </tr>
+               <tr>
+                 <td colspan="4"><img class="map" :src="region.regionmap" alt=""></td>
+               </tr>
+               <tr>
+                 <th>최저 요구 레벨</th><td>{{ region.regionlevellimit }}</td><th>보스 위치</th><td>{{ region.regionbossplace }}</td>
+               </tr>
+               <tr>
+                 <th>적 레벨</th><td>일반: {{ region.regionenemylevel }}<br>보스: {{ region.regionbosslevel }}</td><th>보스까지 전투횟수</th><td>{{ region.regionbattlenumber }}회 + 보스</td>
+               </tr>
+               <tr>
+                 <th>드롭 아이템</th><td colspan="3">{{ region.regiondropitemlist }}</td>
+               </tr>
+               <tr v-if="region.regionfleet1limit != null || region.regionfleet2limit != null || region.regionparameterlimit != null">
+                 <th>출격 제한</th>
+                 <td class="regionLimitations" colspan="3">
+                  제1함대: {{ region.regionfleet1limit }}
+                  <br />
+                  제2함대: {{ region.regionfleet2limit }}
+                  <br />
+                  {{ region.regionparameterlimit }}
+                 </td>
+               </tr>
+               <tr>
+                 <th>드롭 캐릭터</th>
+                 <td colspan="3">
+                   <div class="lFloat characterArea" v-for="character in region.regiondropcharacterlist">
+                     <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
+                     <div class="characterName">
+                       <router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link>
+                     </div>
+                   </div>
+                 </td>
+               </tr>
+               <tr>
+                 <th>드롭 장비 설계도</th>
+                 <td colspan="3">
+                   <div class="dropequiparea" v-for="equip in region.regiondropequiplist">
+                       <img class="equipicon lFloat" :src="equip.equipiconimage" alt="">
+                       <div class="dropequipname lFloat">
+                         {{ equip.equipkoreanname }} {{ equip.equiptier }}
+                       </div>
+                   </div>
+                 </td>
+               </tr>
+             </table>
+          </div>
         </div>
       </div>
-      <div class="fullBox wikiSubContentArea" v-if="showDropDown3 && showDropDown3_3">
-         <table class="fullBox eventStageTable">
-           <colgroup>
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-             <col width="25%">
-           </colgroup>
-           <tr>
-             <th colspan="4">맵</th>
-           </tr>
-           <tr>
-             <td colspan="4"><img class="map" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/events/effort_hope_and_plan/maps/sp3.jpg" alt=""></td>
-           </tr>
-           <tr>
-             <th>최저 요구 레벨</th><td colspan="3">15</td>
-           </tr>
-           <tr>
-             <th>적 레벨</th><td>일반: 38<br>보스: 40</td><th>보스전까지 전투횟수</th><td>5회 + 보스</td>
-           </tr>
-           <tr>
-             <th>드롭 아이템</th><td colspan="3">장비 강화판 T1~T2, 장비 상자 T1~T3, 골드</td>
-           </tr>
-           <tr>
-             <th>드롭 캐릭터</th>
-             <td colspan="3">
-               <div class="lFloat characterArea" v-for="character in sp3_characters_info">
-                 <router-link :to="'/characters/'+character.id"><img :src="character.iconimage" alt=""></router-link>
-                 <div class="characterName">
-                   <router-link :to="'/characters/'+character.id">{{ character.koreanname }}</router-link>
-                 </div>
-               </div>
-             </td>
-           </tr>
-           <tr>
-             <th rowspan="5">드롭 장비 설계도</th><td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/108.png" alt=""></td><td colspan="2">356mm 4연장포 T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/69.png" alt=""></td><td colspan="2">152mm 연장포B T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/84.png" alt=""></td><td colspan="2">203mm 연장포B T3</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/107.png" alt=""></td><td colspan="2">356mm 4연장포 T2</td>
-           </tr>
-           <tr>
-             <td><img class="equipicon" src="https://s3.ap-northeast-2.amazonaws.com/fleetbeacon/equipmentIconImage/215.png" alt=""></td><td colspan="2">610mm 4연장어뢰 T2</td>
-           </tr>
-         </table>
-      </div>
-
     </div>
     <div class="pageFooter"></div>
   </div>
@@ -277,33 +229,49 @@
 export default {
   data() {
     return {
-      showDropDown1: true,
-      showDropDown2: true,
-      showDropDown3: true,
-      showDropDown3_1: true,
-      showDropDown3_2: true,
-      showDropDown3_3: true,
-      eventGeneral: [],
-      eventCharacterList: [],
-      eventItemBattlelist: [],
-      eventExchangeList: [],
-      eventRegionA: [],
-      eventRegionB: [],
-      eventRegionC: [],
-      eventRegionD: [],
+      eventGeneral: null,
+      eventCharacterList: null,
+      eventStageGeneral: null,
+      eventExchangeList: null,
+      eventQuestList: null,
+      eventRegionList: null,
+      eventRegionInfo: null,
+      infoDropDown: true,
+      characterDropDown: true,
+      exchangeDropDown: true,
+      questDropDown: true,
+      stageGeneralDropDown: true,
+      stageDropDown: true
     }
   },
   mounted() {
     let self = this
-    this.$http.post("/eventdropcharacterlist",{
-      characters_num: this.sp2_characters_num
+    this.eventIndex = this.$route.params.eventIndex
+
+    this.$http.post("/bigeventinfo", {
+      eventIndex: this.eventIndex
     }).then(function(result) {
-      self.sp2_characters_info = result.data
-    }).catch((error) => console.log(error))
-    this.$http.post("/eventdropcharacterlist",{
-      characters_num: this.sp3_characters_num
-    }).then(function(result) {
-      self.sp3_characters_info = result.data
+      self.eventGeneral = result.data[0][0]
+      self.eventCharacterList = result.data[1]
+      self.eventStageGeneral = result.data[2]
+      self.eventExchangeList = result.data[3]
+      self.eventQuestList = result.data[4]
+      self.eventRegionList = result.data[5]
+      self.eventRegionInfo = result.data[6]
+      for (let i = 0; i < self.eventCharacterList.length; i++) {
+        if (self.eventCharacterList[i].eventbuild == 0) {
+          self.eventCharacterList[i].eventbuild = 'X'
+        }
+        else {
+          self.eventCharacterList[i].eventbuild = 'O'
+        }
+        if (self.eventCharacterList[i].itemexchange == 0) {
+          self.eventCharacterList[i].itemexchange = 'X'
+        }
+        else {
+          self.eventCharacterList[i].itemexchange = 'O'
+        }
+      }
     }).catch((error) => console.log(error))
   }
 }
@@ -388,9 +356,6 @@ table {
 .map {
   width: 100%;
 }
-.eventBuildTable {
-  width: 50%;
-}
 .eventBuildTable>tr>td, .eventBuildTable>tr>th {
   padding: 0.5em;
   vertical-align: middle;
@@ -411,6 +376,7 @@ table {
 }
 .equipicon {
   width: 50px;
+  padding-right: 0.5em;
 }
 .characterArea {
   padding: 0.3em;
@@ -420,5 +386,21 @@ table {
 }
 .characterName {
   font-size: 80%;
+}
+.eventInfoArea {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.dropequiparea {
+  text-align: left;
+  vertical-align: middle;
+  clear: both;
+  padding: 0.3em;
+}
+.dropequipname {
+  line-height: 50px;
+}
+.regionLimitations {
+  line-height: 1.5;
 }
 </style>

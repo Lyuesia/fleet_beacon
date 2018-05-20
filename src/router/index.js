@@ -7,6 +7,7 @@ import tipsRoutes from "./tipsRoutes.js"
 import updateRoutes from "./updateRoutes.js"
 import eventsRoutes from "./eventsRoutes.js"
 import equipsRoutes from "./equipsRoutes.js"
+import reportsRoutes from "./reportsRoutes.js"
 
 Vue.use(Router)
 
@@ -21,6 +22,7 @@ export default new Router({
     ...charactersRoutes,
     ...updateRoutes,
     ...eventsRoutes,
-    ...equipsRoutes
+    ...equipsRoutes,
+    ...reportsRoutes
   ]
 })

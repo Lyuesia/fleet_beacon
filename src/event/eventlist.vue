@@ -15,6 +15,9 @@
           <th>이벤트 종류</th><th>이벤트명</th>
         </tr>
         <tr>
+          <td>포인트 이벤트</td><td><router-link to="/pointevent/1">만두대작전</router-link></td>
+        </tr>
+        <tr>
           <td>미니 이벤트</td><td><router-link to="/minievent/1">그라프 쉬페 추격전</router-link></td>
         </tr>
         <tr>

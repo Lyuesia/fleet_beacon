@@ -124,4 +124,7 @@
     color: white;
     background-color: #58a9f7;
   }
+  .ql-editor {
+    background-color: white;
+  }
 </style>

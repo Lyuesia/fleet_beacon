@@ -6,9 +6,10 @@
     <div class="top-menu">
       <a class="top-menu-link useable" @click="topMenu2=!topMenu2" v-bind:class="{ active: topMenu2 }">이벤트 정보</a>
       <div class="dropdown-menu eventDropdown" v-if="topMenu2">
+        <router-link v-on:click.native="closeAllDropdown" to="/minievent/3">영광된 최종전</router-link>
+        <router-link v-on:click.native="closeAllDropdown" to="/bigevent/1">홍염의 방문자</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/questevent/2">가르쳐줘! Z23 선생님! (일)</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/questevent/3">가르쳐줘! Z23 선생님! (한)</router-link>
-        <router-link v-on:click.native="closeAllDropdown" to="/pointevent/1">만두대작전</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/questevent/1">아카시의 부탁</router-link>
         <router-link v-on:click.native="closeAllDropdown" to="/eventlist">지나간 이벤트 목록</router-link>
         <!-- <a class="sub-menu" href="#">이벤트 임무</a>

@@ -4,6 +4,7 @@ import router from "./router"
 import axios from 'axios'
 import VueAnalytics from 'vue-analytics'
 
+
 Vue.prototype.$http = axios
 
 Vue.use(VueAnalytics, {
